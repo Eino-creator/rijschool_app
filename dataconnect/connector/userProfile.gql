@@ -1,0 +1,20 @@
+mutation CreateUserProfile(
+    $name: String!
+    $email: String!
+) @auth(level: USER) {
+    user_insert(
+        data: {
+            firebaseUid_expr: "auth.uid"
+            name: $name
+            email: $email
+            role: "pupil"
+        }
+    )
+}
+
+mutation MakeMyProfileAdmin @auth(level: USER) {
+    user_updateMany(
+        where: { email: { eq: "admin@gmail.com" } }
+        data: { role: "admin" }
+    )
+}

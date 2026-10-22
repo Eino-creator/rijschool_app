@@ -1,0 +1,45 @@
+type User @table {
+  firebaseUid: String @unique
+  name: String!
+  email: String!
+  role: String!
+}
+
+type ServiceRate @table {
+  name: String!
+  price: Float!
+}
+
+type Lesson @table {
+  date: Timestamp!
+  endDate: Timestamp!
+  status: String!
+  paymentStatus: String!
+  cost: Float!
+  notes: String
+  pupil: User!
+  serviceRate: ServiceRate
+}
+
+type Invoice @table {
+  issueDate: Timestamp!
+  dueDate: Timestamp!
+  totalAmount: Float!
+  status: String!
+  paymentMethod: String
+  pupil: User!
+}
+
+type InvoiceItem @table {
+  invoice: Invoice!
+  lesson: Lesson!
+}
+
+type PaymentLog @table {
+  amount: Float!
+  date: Timestamp!
+  method: String!
+  transactionId: String
+  lesson: Lesson!
+  pupil: User!
+}

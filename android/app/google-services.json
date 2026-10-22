@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "796334774669",
+    "project_id": "rijschool-app-4954a",
+    "storage_bucket": "rijschool-app-4954a.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:796334774669:android:6d63e918be89c8af83c5c4",
+        "android_client_info": {
+          "package_name": "com.example.rijschool_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBp1xnE4OjITbESiCoUMjfUIM5c-Era988"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,33 @@
+{
+  "flutter": {
+    "platforms": {
+      "android": {
+        "default": {
+          "projectId": "rijschool-app-4954a",
+          "appId": "1:796334774669:android:6d63e918be89c8af83c5c4",
+          "fileOutput": "android/app/google-services.json"
+        }
+      },
+      "dart": {
+        "lib/firebase_options.dart": {
+          "projectId": "rijschool-app-4954a",
+          "configurations": {
+            "android": "1:796334774669:android:6d63e918be89c8af83c5c4",
+            "ios": "1:796334774669:ios:ab553b400f404ebd83c5c4",
+            "macos": "1:796334774669:ios:ab553b400f404ebd83c5c4",
+            "web": "1:796334774669:web:35ea0b869d33856983c5c4",
+            "windows": "1:796334774669:web:b5721800ccf8230883c5c4"
+          }
+        }
+      }
+    }
+  },
+  "emulators": {
+    "dataconnect": {
+      "dataDir": "dataconnect/.dataconnect/pgliteData"
+    }
+  },
+  "dataconnect": {
+    "source": "dataconnect"
+  }
+}

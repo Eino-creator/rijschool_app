@@ -1,0 +1,74 @@
+library dataconnect_generated;
+import 'package:firebase_data_connect/firebase_data_connect.dart';
+import 'package:flutter/foundation.dart';
+import 'dart:convert';
+
+part 'get_lessons.dart';
+
+part 'create_lesson.dart';
+
+part 'get_pupils.dart';
+
+part 'create_user_profile.dart';
+
+part 'make_my_profile_admin.dart';
+
+
+
+
+
+
+
+class ConnectorConnector {
+  
+  
+  GetLessonsVariablesBuilder getLessons () {
+    return GetLessonsVariablesBuilder(dataConnect, );
+  }
+  
+  
+  CreateLessonVariablesBuilder createLesson ({required Timestamp date, required Timestamp endDate, required String status, required String paymentStatus, required double cost, required String pupilId, }) {
+    return CreateLessonVariablesBuilder(dataConnect, date: date,endDate: endDate,status: status,paymentStatus: paymentStatus,cost: cost,pupilId: pupilId,);
+  }
+  
+  
+  GetPupilsVariablesBuilder getPupils () {
+    return GetPupilsVariablesBuilder(dataConnect, );
+  }
+  
+  
+  CreateUserProfileVariablesBuilder createUserProfile ({required String name, required String email, }) {
+    return CreateUserProfileVariablesBuilder(dataConnect, name: name,email: email,);
+  }
+  
+  
+  MakeMyProfileAdminVariablesBuilder makeMyProfileAdmin () {
+    return MakeMyProfileAdminVariablesBuilder(dataConnect, );
+  }
+  
+
+  static ConnectorConfig connectorConfig = ConnectorConfig(
+    'europe-west4',
+    'connector',
+    'rijschool-app-4954a-service',
+  );
+
+  ConnectorConnector({required this.dataConnect});
+  static ConnectorConnector get instance {
+    
+    CacheSettings cacheSettings = CacheSettings(
+      maxAge: Duration(milliseconds:0),
+      storage: CacheStorage.persistent,
+    );
+    
+    return ConnectorConnector(
+        dataConnect: FirebaseDataConnect.instanceFor(
+            connectorConfig: connectorConfig,
+            
+            cacheSettings: cacheSettings,
+            
+            sdkType: CallerSDKType.generated));
+  }
+
+  FirebaseDataConnect dataConnect;
+}

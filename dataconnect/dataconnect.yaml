@@ -1,0 +1,13 @@
+specVersion: "v1"
+serviceId: "rijschool-app-4954a-service"
+location: "europe-west4"
+schemas:
+  - source: "./schema"
+    datasource:
+      postgresql:
+        database: "rijschool-app-4954a-database"
+        cloudSql:
+          instanceId: "rijschool-app-4954a-instance"
+          # schemaValidation: "STRICT"     # STRICT mode makes Postgres schema match Data Connect exactly.
+          # schemaValidation: "COMPATIBLE" # COMPATIBLE mode makes Postgres schema compatible with Data Connect.
+connectorDirs: ["./connector"]
