@@ -1,7 +1,5 @@
 
 import 'package:flutter/material.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:rijschool_app/dataconnect_generated/generated.dart';
 import 'package:rijschool_app/screens/lessons_screen.dart';
 import 'package:rijschool_app/screens/pupils_screen.dart';
 
@@ -15,12 +13,6 @@ class DashboardScreen extends StatefulWidget {
 
 class _DashboardScreenState extends State<DashboardScreen> {
   int currentIndex = 0;
-  bool _isCreatingProfile = false;
-
-  Future<void> _createMyProfile() async {
-    setState(() => _isCreatingProfile = true);
-
-  }
 
   @override
   Widget build(BuildContext context) {
