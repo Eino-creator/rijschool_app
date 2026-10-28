@@ -22,11 +22,13 @@ class GetPupilUsers {
   final String id;
   final String name;
   final String email;
+  final String role;
   GetPupilUsers.fromJson(dynamic json):
   
   id = nativeFromJson<String>(json['id']),
   name = nativeFromJson<String>(json['name']),
-  email = nativeFromJson<String>(json['email']);
+  email = nativeFromJson<String>(json['email']),
+  role = nativeFromJson<String>(json['role']);
   @override
   bool operator ==(Object other) {
     if(identical(this, other)) {
@@ -39,11 +41,12 @@ class GetPupilUsers {
     final GetPupilUsers otherTyped = other as GetPupilUsers;
     return id == otherTyped.id && 
     name == otherTyped.name && 
-    email == otherTyped.email;
+    email == otherTyped.email && 
+    role == otherTyped.role;
     
   }
   @override
-  int get hashCode => Object.hashAll([id.hashCode, name.hashCode, email.hashCode]);
+  int get hashCode => Object.hashAll([id.hashCode, name.hashCode, email.hashCode, role.hashCode]);
   
 
   Map<String, dynamic> toJson() {
@@ -51,6 +54,7 @@ class GetPupilUsers {
     json['id'] = nativeToJson<String>(id);
     json['name'] = nativeToJson<String>(name);
     json['email'] = nativeToJson<String>(email);
+    json['role'] = nativeToJson<String>(role);
     return json;
   }
 
@@ -58,6 +62,7 @@ class GetPupilUsers {
     required this.id,
     required this.name,
     required this.email,
+    required this.role,
   });
 }
 

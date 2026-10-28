@@ -14,14 +14,6 @@ query GetPupil(
         id
         name
         email
-        lesson {
-            id
-            date
-            endDate
-            status
-            paymentStatus
-            cost
-            notes
-        }
+        role
     }
 }
