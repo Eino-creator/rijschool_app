@@ -4,6 +4,7 @@
 ConnectorConnector.instance.GetLessons().execute();
 ConnectorConnector.instance.CreateLesson(createLessonVariables).execute();
 ConnectorConnector.instance.GetPupils().execute();
+ConnectorConnector.instance.GetPupil(getPupilVariables).execute();
 ConnectorConnector.instance.CreateUserProfile(createUserProfileVariables).execute();
 ConnectorConnector.instance.MakeMyProfileAdmin().execute();
 

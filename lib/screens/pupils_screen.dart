@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:rijschool_app/dataconnect_generated/generated.dart';
+import 'package:rijschool_app/screens/pupil_screen.dart';
 
 class PupilsScreen extends StatefulWidget {
   const PupilsScreen({super.key});
@@ -93,17 +94,23 @@ class _PupilsScreenState extends State<PupilsScreen> {
               final pupil = pupils[index];
 
               return Card(
-                margin: const EdgeInsets.symmetric(
-                  horizontal: 12,
-                  vertical: 6,
-                ),
-                child: ListTile(
-                  leading: const CircleAvatar(
-                    child: Icon(Icons.person_outline),
+                child: InkWell(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => PupilScreen(id: pupil.id,),
+                      ),
+                    );
+                  },
+                  child: ListTile(
+                    leading: const CircleAvatar(
+                      child: Icon(Icons.person_outline),
+                    ),
+                    title: Text(pupil.name),
+                    subtitle: Text(pupil.email),
+                    trailing: Text(pupil.role),
                   ),
-                  title: Text(pupil.name),
-                  subtitle: Text(pupil.email),
-                  trailing: Text(pupil.role),
                 ),
               );
             },

@@ -35,12 +35,3 @@ mutation CreateLesson(
     }
   )
 }
-
-query GetPupils @auth(level: USER) {
-  users {
-    id
-    name
-    email
-    role
-  }
-}

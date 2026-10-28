@@ -1,0 +1,27 @@
+query GetPupils @auth(level: USER) {
+    users(where:  {role: { eq: "pupil" } }) {
+        id
+        name
+        email
+        role
+    }
+}
+
+query GetPupil(
+    $userId: UUID!
+) @auth(level: USER) {
+    users(where: {id: { eq: $userId} }) {
+        id
+        name
+        email
+        lesson {
+            id
+            date
+            endDate
+            status
+            paymentStatus
+            cost
+            notes
+        }
+    }
+}

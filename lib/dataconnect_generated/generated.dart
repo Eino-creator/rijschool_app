@@ -9,6 +9,8 @@ part 'create_lesson.dart';
 
 part 'get_pupils.dart';
 
+part 'get_pupil.dart';
+
 part 'create_user_profile.dart';
 
 part 'make_my_profile_admin.dart';
@@ -34,6 +36,11 @@ class ConnectorConnector {
   
   GetPupilsVariablesBuilder getPupils () {
     return GetPupilsVariablesBuilder(dataConnect, );
+  }
+  
+  
+  GetPupilVariablesBuilder getPupil ({required String userId, }) {
+    return GetPupilVariablesBuilder(dataConnect, userId: userId,);
   }
   
   
