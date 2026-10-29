@@ -18,3 +18,9 @@ mutation MakeMyProfileAdmin @auth(level: USER) {
         data: { role: "admin" }
     )
 }
+
+query GetMyRole($firebaseUid: String!) @auth(level: USER) {
+    users(where: { firebaseUid: { eq: $firebaseUid } }) {
+        role
+    }
+}
