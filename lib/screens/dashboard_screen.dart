@@ -16,6 +16,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
 
   @override
   Widget build(BuildContext context) {
+<<<<<<< Updated upstream
     final List<Widget> pages = [
       Center(
         child: Column(
@@ -67,6 +68,11 @@ class _DashboardScreenState extends State<DashboardScreen> {
             label: 'Pupils',
           ),
         ],
+=======
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Dashboard"),
+>>>>>>> Stashed changes
       ),
     );
   }
