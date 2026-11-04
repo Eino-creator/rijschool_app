@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:rijschool_app/screens/dashboard_screen.dart';
+import 'package:rijschool_app/screens/main_navigation_screen.dart';
 import 'package:rijschool_app/dataconnect_generated/generated.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -71,7 +71,7 @@ class _LoginScreenState extends State<LoginScreen> {
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(
-          builder: (context) => const DashboardScreen(),
+          builder: (context) => const MainNavigationScreen(),
         ),
       );
     } on FirebaseAuthException catch (e) {

@@ -15,6 +15,8 @@ part 'create_user_profile.dart';
 
 part 'make_my_profile_admin.dart';
 
+part 'get_my_role.dart';
+
 
 
 
@@ -51,6 +53,11 @@ class ConnectorConnector {
   
   MakeMyProfileAdminVariablesBuilder makeMyProfileAdmin () {
     return MakeMyProfileAdminVariablesBuilder(dataConnect, );
+  }
+  
+  
+  GetMyRoleVariablesBuilder getMyRole ({required String firebaseUid, }) {
+    return GetMyRoleVariablesBuilder(dataConnect, firebaseUid: firebaseUid,);
   }
   
 

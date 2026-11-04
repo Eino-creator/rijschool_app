@@ -64,11 +64,18 @@ class _MainNavigationScreenState
           if (isInstructor || isAdmin) const PupilsScreen(),
         ];
 
+        final titles = <String>[
+          'Dashboard',
+          'Lessons',
+          if (isInstructor || isAdmin) 'Pupils',
+        ];
+
         // Keep the index valid if available tabs change.
         final safeIndex =
         currentIndex < pages.length ? currentIndex : 0;
 
         return Scaffold(
+          appBar: AppBar(title: Text(titles[safeIndex])),
           body: pages[safeIndex],
           bottomNavigationBar: NavigationBar(
             selectedIndex: safeIndex,

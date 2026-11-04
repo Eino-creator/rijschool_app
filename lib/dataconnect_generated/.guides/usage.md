@@ -7,6 +7,7 @@ ConnectorConnector.instance.GetPupils().execute();
 ConnectorConnector.instance.GetPupil(getPupilVariables).execute();
 ConnectorConnector.instance.CreateUserProfile(createUserProfileVariables).execute();
 ConnectorConnector.instance.MakeMyProfileAdmin().execute();
+ConnectorConnector.instance.GetMyRole(getMyRoleVariables).execute();
 
 ```
 
