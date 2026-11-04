@@ -59,6 +59,7 @@ class _PupilsScreenState extends State<PupilsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(title: Text('pupils'),),
       body: FutureBuilder(
         future: _pupilsFuture,
         builder: (context, snapshot) {

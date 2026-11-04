@@ -42,14 +42,7 @@ class _LessonsScreenState extends State<LessonsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('My Lessons'),
-        actions: [
-          IconButton(
-            onPressed: _openCreateLesson,
-            icon: const Icon(Icons.add),
-            tooltip: 'Add lesson',
-          ),
-        ],
+        title: const Text('Lessons'),
       ),
       body: FutureBuilder(
         future: _lessonsFuture,
@@ -118,6 +111,11 @@ class _LessonsScreenState extends State<LessonsScreen> {
             },
           );
         },
+      ),
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: _openCreateLesson,
+        icon: const Icon(Icons.person_add),
+        label: const Text('Add lesson'),
       ),
     );
   }
