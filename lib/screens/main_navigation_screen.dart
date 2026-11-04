@@ -4,6 +4,7 @@ import 'package:rijschool_app/dataconnect_generated/generated.dart';
 import 'package:rijschool_app/screens/dashboard_screen.dart';
 import 'package:rijschool_app/screens/lessons_screen.dart';
 import 'package:rijschool_app/screens/pupils_screen.dart';
+import 'package:rijschool_app/screens/settings_screen.dart';
 
 class MainNavigationScreen extends StatefulWidget {
   const MainNavigationScreen({super.key});
@@ -62,12 +63,14 @@ class _MainNavigationScreenState
           const DashboardScreen(),
           const LessonsScreen(),
           if (isInstructor || isAdmin) const PupilsScreen(),
+          const SettingsScreen(),
         ];
 
         final titles = <String>[
           'Dashboard',
           'Lessons',
           if (isInstructor || isAdmin) 'Pupils',
+          'Settings'
         ];
 
         // Keep the index valid if available tabs change.
@@ -94,11 +97,16 @@ class _MainNavigationScreenState
                 label: 'Lessons',
               ),
               if (isInstructor || isAdmin)
-                const NavigationDestination(
-                  icon: Icon(Icons.person_outlined),
-                  selectedIcon: Icon(Icons.person),
-                  label: 'Pupils',
-                ),
+              const NavigationDestination(
+                icon: Icon(Icons.person_outlined),
+                selectedIcon: Icon(Icons.person),
+                label: 'Pupils',
+              ),
+              const NavigationDestination(
+                  icon: Icon(Icons.settings_outlined),
+                  selectedIcon: Icon(Icons.settings),
+                  label: 'Settings'
+              ),
             ],
           ),
         );
