@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:rijschool_app/widgets/logout_button.dart';
 
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({super.key});
@@ -12,11 +13,9 @@ class SettingsScreen extends StatefulWidget {
 class _SettingsScreenState extends State<SettingsScreen>{
   @override
   Widget build(BuildContext context) {
-    return const Center(
-      child: Text(
-        'Settings',
-        style: TextStyle(fontSize: 30),
-      ),
+    return Scaffold(
+      appBar: AppBar(title: Text('Settings')),
+      body: const LogoutButton()
     );
   }
 }
