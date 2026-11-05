@@ -2,6 +2,8 @@
 import 'package:flutter/material.dart';
 import 'package:rijschool_app/dataconnect_generated/generated.dart';
 import 'package:rijschool_app/screens/create_lesson_screen.dart';
+import 'package:rijschool_app/widgets/day_selector.dart';
+import 'package:rijschool_app/widgets/lesson_list.dart';
 
 class LessonsScreen extends StatefulWidget {
   const LessonsScreen({super.key});
@@ -86,29 +88,15 @@ class _LessonsScreenState extends State<LessonsScreen> {
             );
           }
 
-          return ListView.builder(
-            itemCount: lessons.length,
-            itemBuilder: (context, index) {
-              final lesson = lessons[index];
 
-              return Card(
-                margin: const EdgeInsets.symmetric(
-                  horizontal: 12,
-                  vertical: 6,
-                ),
-                child: ListTile(
-                  leading: const Icon(Icons.school),
-                  title: Text(lesson.pupil.name),
-                  subtitle: Text(
-                    'Status: ${lesson.status}\n'
-                        'Payment: ${lesson.paymentStatus}\n'
-                        'Cost: €${lesson.cost.toStringAsFixed(2)}\n'
-                        'Date: ${lesson.date.toDateTime().toLocal()}',
-                  ),
-                  isThreeLine: true,
-                ),
-              );
-            },
+          return Column(
+            children: [
+              DaySelector(),
+
+              Expanded(
+                  child: LessonList(lessons: lessons),
+              ),
+            ],
           );
         },
       ),
