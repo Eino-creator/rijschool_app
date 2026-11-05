@@ -15,7 +15,9 @@ class _SettingsScreenState extends State<SettingsScreen>{
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text('Settings')),
-      body: const LogoutButton()
+      body: const Center(
+        child: LogoutButton(),
+      ),
     );
   }
 }
