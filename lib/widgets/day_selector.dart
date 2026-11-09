@@ -1,81 +1,96 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class DaySelector extends StatelessWidget {
+  final ValueChanged<DateTime> onDayPressed;
+  final DateTime? selectedDay;
+
+  const DaySelector({
+    super.key,
+    required this.onDayPressed,
+    required this.selectedDay,
+  });
+
   List<DateTime> getCurrentWeek() {
     final today = DateTime.now();
 
     final monday = today.subtract(
-        Duration(days: today.weekday - 1)
+      Duration(days: today.weekday - 1),
     );
 
     return List.generate(
-      7,
-        (index) => monday.add(Duration(days: index)),
+      16,
+          (index) => monday.add(Duration(days: index)),
     );
   }
-
-
-  const DaySelector({super.key});
 
   @override
   Widget build(BuildContext context) {
     final days = getCurrentWeek();
-    final today = DateTime.now();
-
-    const dayNames = [
-      'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'
-    ];
 
     return Card(
       child: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Row(
-          children: List.generate(7, (index) {
-            final date = days[index];
+        padding: const EdgeInsets.all(10),
+        child: SizedBox(
+          height: 70,
+          child:
+          SizedBox(
+            height: 70,
+            child: ListView(
+              scrollDirection: Axis.horizontal,
+              children: days.map((date) {
+                final isToday = DateUtils.isSameDay(date, DateTime.now());
+                final isSelected = DateUtils.isSameDay(date, selectedDay);
 
-            final isToday =
-                date.year == today.year &&
-                date.month == today.month &&
-                date.day == today.day;
-
-            return Expanded(
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Text(
-                      dayNames[index],
-                      style: const TextStyle(
-                        fontSize: 12,
-                        color: Colors.grey,
-                      ),
-                    ),
-                    const SizedBox(height: 10,),
-                    Container(
-                      padding: const EdgeInsets.all(10),
+                return GestureDetector(
+                  behavior: HitTestBehavior.opaque,
+                  onTap: () => onDayPressed(date),
+                  child: SizedBox(
+                    width: 50,
+                    child: Container(
                       decoration: BoxDecoration(
-                        color: isToday
-                            ? Colors.blue
-                            : Colors.transparent,
-                        shape: BoxShape.circle,
+                        borderRadius: BorderRadius.circular(20),
+                        border: isSelected
+                            ? Border.all(color: Colors.blue, width: 2)
+                            :null,
                       ),
-                      child: Text(
-                        '${date.day}',
-                        style: TextStyle(
-                          fontSize: 15,
-                          fontWeight: FontWeight.bold,
-                          color: isToday
-                            ? Colors.white
-                            : Colors.black,
-                        ),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            DateFormat('EEE', 'nl_NL').format(date),
+                            style: const TextStyle(
+                              fontSize: 12,
+                              color: Colors.grey,
+                            ),
+                          ),
+                          AnimatedContainer(
+                            duration: const Duration(milliseconds: 200),
+                            padding: const EdgeInsets.all(5),
+                            decoration: BoxDecoration(
+                              color: isToday ? Colors.blue : Colors.transparent,
+                              shape: BoxShape.circle,
+                            ),
+                            child: Text(
+                              '${date.day}',
+                              style: TextStyle(
+                                fontSize: 15,
+                                fontWeight: FontWeight.bold,
+                                color: isToday ? Colors.white : Colors.black,
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                     )
-                  ],
-                )
-            );
-          }
+                  ),
+                );
+              }).toList(),
+            ),
+          ),
+
         ),
       ),
-    ),
     );
   }
 }

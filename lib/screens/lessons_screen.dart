@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:rijschool_app/dataconnect_generated/generated.dart';
 import 'package:rijschool_app/screens/create_lesson_screen.dart';
@@ -14,6 +13,10 @@ class LessonsScreen extends StatefulWidget {
 
 class _LessonsScreenState extends State<LessonsScreen> {
   late Future<dynamic> _lessonsFuture;
+
+  DateTime? selectedDay = DateTime.now();
+
+
 
   @override
   void initState() {
@@ -91,7 +94,14 @@ class _LessonsScreenState extends State<LessonsScreen> {
 
           return Column(
             children: [
-              DaySelector(),
+              DaySelector(
+                selectedDay: selectedDay,
+                onDayPressed: (pressedDay) {
+                  setState(() {
+                    selectedDay = pressedDay;
+                  });
+                },
+              ),
 
               Expanded(
                   child: LessonList(lessons: lessons),
