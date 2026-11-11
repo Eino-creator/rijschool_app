@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:rijschool_app/dataconnect_generated/generated.dart';
 import 'package:rijschool_app/screens/create_lesson_screen.dart';
 import 'package:rijschool_app/widgets/day_selector.dart';
-import 'package:rijschool_app/widgets/lesson_list.dart';
+import 'package:rijschool_app/widgets/lessons_timetable.dart';
 import 'package:rijschool_app/extentions/date_time_extention.dart';
 
 class LessonsScreen extends StatefulWidget {
@@ -23,9 +23,11 @@ class _LessonsScreenState extends State<LessonsScreen> {
   late final DateTime? endOfDay = startOfDay?.add(const Duration(days: 1));
 
   Timestamp _toTimestamp(DateTime dateTime) {
+    final utc = dateTime.toUtc();
+
     return Timestamp(
-      0,
-      dateTime.toUtc().millisecondsSinceEpoch ~/ 1000,
+      (utc.millisecondsSinceEpoch % 1000) * 1000000,
+      utc.millisecondsSinceEpoch ~/ 1000,
     );
   }
 
@@ -123,7 +125,7 @@ class _LessonsScreenState extends State<LessonsScreen> {
                 }
 
                 return Expanded(
-                  child: LessonList(lessons: lessons),
+                  child: LessonsTimetable(lessons: lessons),
                 );
               },
             ),

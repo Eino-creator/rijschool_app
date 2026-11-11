@@ -36,9 +36,11 @@ class _CreateLessonScreenState extends State<CreateLessonScreen> {
   }
 
   Timestamp _toTimestamp(DateTime dateTime) {
+    final utc = dateTime.toUtc();
+
     return Timestamp(
-      0,
-      dateTime.toUtc().millisecondsSinceEpoch ~/ 1000,
+      (utc.millisecondsSinceEpoch % 1000) * 1000000,
+      utc.millisecondsSinceEpoch ~/ 1000,
     );
   }
 
