@@ -5,6 +5,8 @@ import 'dart:convert';
 
 part 'get_lessons.dart';
 
+part 'get_lessons_by_day.dart';
+
 part 'create_lesson.dart';
 
 part 'get_pupils.dart';
@@ -28,6 +30,11 @@ class ConnectorConnector {
   
   GetLessonsVariablesBuilder getLessons () {
     return GetLessonsVariablesBuilder(dataConnect, );
+  }
+  
+  
+  GetLessonsByDayVariablesBuilder getLessonsByDay ({required Timestamp startDate, required Timestamp endDate, }) {
+    return GetLessonsByDayVariablesBuilder(dataConnect, startDate: startDate,endDate: endDate,);
   }
   
   
