@@ -2,6 +2,7 @@
 
 ```dart
 ConnectorConnector.instance.GetLessons().execute();
+ConnectorConnector.instance.GetLessonsByDay(getLessonsByDayVariables).execute();
 ConnectorConnector.instance.CreateLesson(createLessonVariables).execute();
 ConnectorConnector.instance.GetPupils().execute();
 ConnectorConnector.instance.GetPupil(getPupilVariables).execute();

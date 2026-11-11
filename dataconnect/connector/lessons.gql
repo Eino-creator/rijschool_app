@@ -15,13 +15,13 @@ query GetLessons @auth(level: USER) {
 }
 
 query GetLessonsByDay(
-  $startDate: DateTime!
-  $endDate: DateTime!
+  $startDate: Timestamp!
+  $endDate: Timestamp!
 ) @auth(level: USER) {
   lessons(
     where: {
       date: {
-        gte: $startDate
+        gt: $startDate
         lt: $endDate
       }
     }
