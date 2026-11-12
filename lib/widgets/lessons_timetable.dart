@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:rijschool_app/widgets/Lesson_card.dart';
+import 'package:rijschool_app/widgets/empty_lesson_slot.dart';
 
 class LessonsTimetable extends StatelessWidget {
   final List lessons;
@@ -74,6 +75,7 @@ class LessonsTimetable extends StatelessWidget {
                 width: 1,
               ),
 
+              if(slotLessons.isNotEmpty)
               Expanded(
                 child: Stack(
                   clipBehavior: Clip.none,
@@ -92,6 +94,11 @@ class LessonsTimetable extends StatelessWidget {
                   }).toList()
                 ),
               ),
+              if(slotLessons.isEmpty)
+                Expanded(
+                  child: EmptyLessonCard(
+                  ),
+                ),
             ],
           ),
         );
