@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:rijschool_app/extentions/timestamp_extension.dart';
+import 'package:rijschool_app/screens/lesson_screen.dart';
 
 class LessonCard extends StatelessWidget {
   final dynamic lessons;
@@ -31,7 +31,14 @@ class LessonCard extends StatelessWidget {
       child: Material(
         color: Colors.transparent,
         child: InkWell(
-          onTap: onTap,
+          onTap: () {
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => LessonScreen(),
+                  ),
+            );
+          },
           borderRadius: BorderRadius.circular(12),
           child: Container(
             padding: const EdgeInsets.symmetric(

@@ -132,11 +132,6 @@ class _LessonsScreenState extends State<LessonsScreen> {
           ),
         ],
       ),
-      floatingActionButton: FloatingActionButton.extended(
-        onPressed: _openCreateLesson,
-        icon: const Icon(Icons.person_add),
-        label: Text('add pupil'),
-      ),
     );
   }
 }

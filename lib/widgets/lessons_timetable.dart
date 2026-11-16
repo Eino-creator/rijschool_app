@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:rijschool_app/screens/lesson_screen.dart';
 import 'package:rijschool_app/widgets/Lesson_card.dart';
 import 'package:rijschool_app/widgets/empty_lesson_slot.dart';
 
@@ -89,7 +90,6 @@ class LessonsTimetable extends StatelessWidget {
                     return LessonCard(
                       lessons: lesson,
                       top: top,
-                      onTap: () {},
                     );
                   }).toList()
                 ),
