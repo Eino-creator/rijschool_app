@@ -45,7 +45,7 @@ class _PupilScreenState extends State<PupilScreen> {
                 child: Padding(
                   padding: const EdgeInsets.all(16),
                   child: Text(
-                    'Could not load pupils:\n${snapshot.error}',
+                    'Could not load pupil:\n${snapshot.error}',
                     textAlign: TextAlign.center,
                   ),
                 ),

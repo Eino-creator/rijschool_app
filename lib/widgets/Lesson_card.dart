@@ -35,7 +35,7 @@ class LessonCard extends StatelessWidget {
             Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => LessonScreen(),
+                  builder: (context) => LessonScreen(id: lessons.id),
                   ),
             );
           },

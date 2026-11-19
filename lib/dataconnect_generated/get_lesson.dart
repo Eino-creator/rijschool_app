@@ -1,23 +1,24 @@
 part of 'generated.dart';
 
-class GetLessonsVariablesBuilder {
-  
+class GetLessonVariablesBuilder {
+  String id;
+
   final FirebaseDataConnect _dataConnect;
-  GetLessonsVariablesBuilder(this._dataConnect, );
-  Deserializer<GetLessonsData> dataDeserializer = (dynamic json)  => GetLessonsData.fromJson(jsonDecode(json));
-  
-  Future<QueryResult<GetLessonsData, void>> execute({QueryFetchPolicy fetchPolicy = QueryFetchPolicy.preferCache}) {
+  GetLessonVariablesBuilder(this._dataConnect, {required  this.id,});
+  Deserializer<GetLessonData> dataDeserializer = (dynamic json)  => GetLessonData.fromJson(jsonDecode(json));
+  Serializer<GetLessonVariables> varsSerializer = (GetLessonVariables vars) => jsonEncode(vars.toJson());
+  Future<QueryResult<GetLessonData, GetLessonVariables>> execute({QueryFetchPolicy fetchPolicy = QueryFetchPolicy.preferCache}) {
     return ref().execute(fetchPolicy: fetchPolicy);
   }
 
-  QueryRef<GetLessonsData, void> ref() {
-    
-    return _dataConnect.query("GetLessons", dataDeserializer, emptySerializer, null);
+  QueryRef<GetLessonData, GetLessonVariables> ref() {
+    GetLessonVariables vars= GetLessonVariables(id: id,);
+    return _dataConnect.query("GetLesson", dataDeserializer, varsSerializer, vars);
   }
 }
 
 @immutable
-class GetLessonsLessons {
+class GetLessonLessons {
   final String id;
   final Timestamp date;
   final Timestamp endDate;
@@ -25,8 +26,8 @@ class GetLessonsLessons {
   final String paymentStatus;
   final double cost;
   final String? notes;
-  final GetLessonsLessonsPupil pupil;
-  GetLessonsLessons.fromJson(dynamic json):
+  final GetLessonLessonsPupil pupil;
+  GetLessonLessons.fromJson(dynamic json):
   
   id = nativeFromJson<String>(json['id']),
   date = Timestamp.fromJson(json['date']),
@@ -35,7 +36,7 @@ class GetLessonsLessons {
   paymentStatus = nativeFromJson<String>(json['paymentStatus']),
   cost = nativeFromJson<double>(json['cost']),
   notes = json['notes'] == null ? null : nativeFromJson<String>(json['notes']),
-  pupil = GetLessonsLessonsPupil.fromJson(json['pupil']);
+  pupil = GetLessonLessonsPupil.fromJson(json['pupil']);
   @override
   bool operator ==(Object other) {
     if(identical(this, other)) {
@@ -45,7 +46,7 @@ class GetLessonsLessons {
       return false;
     }
 
-    final GetLessonsLessons otherTyped = other as GetLessonsLessons;
+    final GetLessonLessons otherTyped = other as GetLessonLessons;
     return id == otherTyped.id && 
     date == otherTyped.date && 
     endDate == otherTyped.endDate && 
@@ -75,7 +76,7 @@ class GetLessonsLessons {
     return json;
   }
 
-  GetLessonsLessons({
+  GetLessonLessons({
     required this.id,
     required this.date,
     required this.endDate,
@@ -88,10 +89,10 @@ class GetLessonsLessons {
 }
 
 @immutable
-class GetLessonsLessonsPupil {
+class GetLessonLessonsPupil {
   final String id;
   final String name;
-  GetLessonsLessonsPupil.fromJson(dynamic json):
+  GetLessonLessonsPupil.fromJson(dynamic json):
   
   id = nativeFromJson<String>(json['id']),
   name = nativeFromJson<String>(json['name']);
@@ -104,7 +105,7 @@ class GetLessonsLessonsPupil {
       return false;
     }
 
-    final GetLessonsLessonsPupil otherTyped = other as GetLessonsLessonsPupil;
+    final GetLessonLessonsPupil otherTyped = other as GetLessonLessonsPupil;
     return id == otherTyped.id && 
     name == otherTyped.name;
     
@@ -120,19 +121,19 @@ class GetLessonsLessonsPupil {
     return json;
   }
 
-  GetLessonsLessonsPupil({
+  GetLessonLessonsPupil({
     required this.id,
     required this.name,
   });
 }
 
 @immutable
-class GetLessonsData {
-  final List<GetLessonsLessons> lessons;
-  GetLessonsData.fromJson(dynamic json):
+class GetLessonData {
+  final List<GetLessonLessons> lessons;
+  GetLessonData.fromJson(dynamic json):
   
   lessons = (json['lessons'] as List<dynamic>)
-        .map((e) => GetLessonsLessons.fromJson(e))
+        .map((e) => GetLessonLessons.fromJson(e))
         .toList();
   @override
   bool operator ==(Object other) {
@@ -143,7 +144,7 @@ class GetLessonsData {
       return false;
     }
 
-    final GetLessonsData otherTyped = other as GetLessonsData;
+    final GetLessonData otherTyped = other as GetLessonData;
     return lessons == otherTyped.lessons;
     
   }
@@ -157,8 +158,43 @@ class GetLessonsData {
     return json;
   }
 
-  GetLessonsData({
+  GetLessonData({
     required this.lessons,
+  });
+}
+
+@immutable
+class GetLessonVariables {
+  final String id;
+  @Deprecated('fromJson is deprecated for Variable classes as they are no longer required for deserialization.')
+  GetLessonVariables.fromJson(Map<String, dynamic> json):
+  
+  id = nativeFromJson<String>(json['id']);
+  @override
+  bool operator ==(Object other) {
+    if(identical(this, other)) {
+      return true;
+    }
+    if(other.runtimeType != runtimeType) {
+      return false;
+    }
+
+    final GetLessonVariables otherTyped = other as GetLessonVariables;
+    return id == otherTyped.id;
+    
+  }
+  @override
+  int get hashCode => id.hashCode;
+  
+
+  Map<String, dynamic> toJson() {
+    Map<String, dynamic> json = {};
+    json['id'] = nativeToJson<String>(id);
+    return json;
+  }
+
+  GetLessonVariables({
+    required this.id,
   });
 }
 

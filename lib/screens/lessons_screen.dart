@@ -1,7 +1,7 @@
 import 'package:firebase_data_connect/firebase_data_connect.dart';
 import 'package:flutter/material.dart';
 import 'package:rijschool_app/dataconnect_generated/generated.dart';
-import 'package:rijschool_app/screens/create_lesson_screen.dart';
+import 'package:rijschool_app/widgets/create_lesson_widget.dart';
 import 'package:rijschool_app/widgets/day_selector.dart';
 import 'package:rijschool_app/widgets/lessons_timetable.dart';
 import 'package:rijschool_app/extentions/date_time_extention.dart';
@@ -49,19 +49,45 @@ class _LessonsScreenState extends State<LessonsScreen> {
         .execute();
   }
 
-  Future<void> _openCreateLesson() async {
-    final created = await Navigator.push<bool>(
-      context,
-      MaterialPageRoute(
-        builder: (context) => const CreateLessonScreen(),
-      ),
-    );
-
+  void _reloadLessons() {
     if (!mounted) return;
+    setState(_loadLessons);
+  }
 
-    if (created == true) {
-      setState(_loadLessons);
-    }
+  void _openCreateLessonModal() {
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      builder: (context) => Padding(
+        padding: EdgeInsets.only(
+          bottom: MediaQuery.of(context).viewInsets.bottom,
+        ),
+        child: ConstrainedBox(
+          constraints: BoxConstraints(
+            maxHeight: MediaQuery.of(context).size.height * 0.85,
+          ),
+          child: Scaffold(
+            backgroundColor: Colors.transparent,
+            appBar: AppBar(
+              title: const Text('Create lesson'),
+              leading: CloseButton(
+                onPressed: () => Navigator.pop(context),
+              ),
+            ),
+            body: CreateLessonWidget(
+              initialDate: selectedDay,
+              onLessonCreated: () {
+                Navigator.pop(context, true);
+              },
+            ),
+          ),
+        ),
+      ),
+    ).then((created) {
+      if (created == true) {
+        _reloadLessons();
+      }
+    });
   }
 
   @override
@@ -115,7 +141,7 @@ class _LessonsScreenState extends State<LessonsScreen> {
                         const Text('No lessons yet. Add your first lesson!'),
                         const SizedBox(height: 16),
                         FilledButton.icon(
-                          onPressed: _openCreateLesson,
+                          onPressed: _openCreateLessonModal,
                           icon: const Icon(Icons.add),
                           label: const Text('Add lesson'),
                         ),
@@ -125,7 +151,10 @@ class _LessonsScreenState extends State<LessonsScreen> {
                 }
 
                 return Expanded(
-                  child: LessonsTimetable(lessons: lessons),
+                  child: LessonsTimetable(
+                    lessons: lessons,
+                    onLessonCreated: _reloadLessons,
+                  ),
                 );
               },
             ),

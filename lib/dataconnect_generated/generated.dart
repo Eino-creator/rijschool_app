@@ -3,7 +3,7 @@ import 'package:firebase_data_connect/firebase_data_connect.dart';
 import 'package:flutter/foundation.dart';
 import 'dart:convert';
 
-part 'get_lessons.dart';
+part 'get_lesson.dart';
 
 part 'get_lessons_by_day.dart';
 
@@ -28,8 +28,8 @@ part 'get_my_role.dart';
 class ConnectorConnector {
   
   
-  GetLessonsVariablesBuilder getLessons () {
-    return GetLessonsVariablesBuilder(dataConnect, );
+  GetLessonVariablesBuilder getLesson ({required String id, }) {
+    return GetLessonVariablesBuilder(dataConnect, id: id,);
   }
   
   

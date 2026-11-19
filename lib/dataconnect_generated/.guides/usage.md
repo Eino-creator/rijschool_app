@@ -1,7 +1,7 @@
 # Basic Usage
 
 ```dart
-ConnectorConnector.instance.GetLessons().execute();
+ConnectorConnector.instance.GetLesson(getLessonVariables).execute();
 ConnectorConnector.instance.GetLessonsByDay(getLessonsByDayVariables).execute();
 ConnectorConnector.instance.CreateLesson(createLessonVariables).execute();
 ConnectorConnector.instance.GetPupils().execute();

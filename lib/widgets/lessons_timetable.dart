@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:rijschool_app/screens/lesson_screen.dart';
 import 'package:rijschool_app/widgets/Lesson_card.dart';
 import 'package:rijschool_app/widgets/empty_lesson_slot.dart';
+import 'package:rijschool_app/widgets/create_lesson_widget.dart';
 
 class LessonsTimetable extends StatelessWidget {
   final List lessons;
+  final VoidCallback? onLessonCreated;
 
   const LessonsTimetable({
     super.key,
     required this.lessons,
+    this.onLessonCreated,
   });
 
   @override
@@ -97,6 +99,43 @@ class LessonsTimetable extends StatelessWidget {
               if(slotLessons.isEmpty)
                 Expanded(
                   child: EmptyLessonCard(
+                    onTap: () {
+                      showModalBottomSheet(
+                        context: context,
+                        isScrollControlled: true,
+                        builder: (context) => Padding(
+                          padding: EdgeInsets.only(
+                            bottom: MediaQuery.of(context).viewInsets.bottom,
+                          ),
+                          child: ConstrainedBox(
+                            constraints: BoxConstraints(
+                              maxHeight: MediaQuery.of(context).size.height * 0.85,
+                            ),
+                            child: Scaffold(
+                              backgroundColor: Colors.transparent,
+                              appBar: AppBar(
+                                title: const Text('Create lesson'),
+                                leading: CloseButton(
+                                  onPressed: () => Navigator.pop(context),
+                                ),
+                              ),
+                              body: CreateLessonWidget(
+                                initialDate: hourStart,
+                                initialStartTime: TimeOfDay(hour: hour, minute: 0),
+                                initialEndTime: TimeOfDay(hour: hour + 1, minute: 0),
+                                onLessonCreated: () {
+                                  Navigator.pop(context, true);
+                                },
+                              ),
+                            ),
+                          ),
+                        ),
+                      ).then((created) {
+                        if (created == true) {
+                          onLessonCreated?.call();
+                        }
+                      });
+                    },
                   ),
                 ),
             ],

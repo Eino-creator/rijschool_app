@@ -21,17 +21,19 @@ ConnectorConnector.instance.dataConnect.useDataConnectEmulator(host, port);
 You can also call queries and mutations by using the connector class.
 ## Queries
 
-### GetLessons
+### GetLesson
 #### Required Arguments
 ```dart
-// No required arguments
-ConnectorConnector.instance.getLessons().execute();
+String id = ...;
+ConnectorConnector.instance.getLesson(
+  id: id,
+).execute();
 ```
 
 
 
 #### Return Type
-`execute()` returns a `QueryResult<GetLessonsData, void>`
+`execute()` returns a `QueryResult<GetLessonData, GetLessonVariables>`
 ```dart
 /// Result of an Operation Request (query/mutation).
 class OperationResult<Data, Variables> {
@@ -46,8 +48,10 @@ class QueryResult<Data, Variables> extends OperationResult<Data, Variables> {
   QueryResult(super.dataConnect, super.data, super.ref);
 }
 
-final result = await ConnectorConnector.instance.getLessons();
-GetLessonsData data = result.data;
+final result = await ConnectorConnector.instance.getLesson(
+  id: id,
+);
+GetLessonData data = result.data;
 final ref = result.ref;
 ```
 
@@ -55,7 +59,11 @@ final ref = result.ref;
 Each builder returns an `execute` function, which is a helper function that creates a `Ref` object, and executes the underlying operation.
 An example of how to use the `Ref` object is shown below:
 ```dart
-final ref = ConnectorConnector.instance.getLessons().ref();
+String id = ...;
+
+final ref = ConnectorConnector.instance.getLesson(
+  id: id,
+).ref();
 ref.execute();
 
 ref.subscribe(...);

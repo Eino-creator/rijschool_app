@@ -1,5 +1,7 @@
-query GetLessons @auth(level: USER) {
-  lessons {
+query GetLesson(
+  $id: UUID!
+) @auth(level: USER) {
+  lessons(where: {id: { eq: $id} }) {
     id
     date
     endDate
