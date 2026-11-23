@@ -1,5 +1,7 @@
-query GetLessons @auth(level: USER) {
-  lessons {
+query GetLesson(
+  $id: UUID!
+) @auth(level: USER) {
+  lessons(where: {id: { eq: $id} }) {
     id
     date
     endDate
@@ -14,11 +16,35 @@ query GetLessons @auth(level: USER) {
   }
 }
 
-mutation CreateLesson(
+query GetLessonsByDay(
+  $startDate: Timestamp!
+  $endDate: Timestamp!
+) @auth(level: USER) {
+  lessons(
+    where: {
+      date: {
+        gt: $startDate
+        lt: $endDate
+      }
+    }
+  ) {
+    id
+    date
+    endDate
+    status
+    paymentStatus
+    cost
+    notes
+    pupil {
+      id
+      name
+    }
+  }
+}
+
+mutation CreateNewLesson(
   $date: Timestamp!
   $endDate: Timestamp!
-  $status: String!
-  $paymentStatus: String!
   $cost: Float!
   $notes: String
   $pupilId: UUID!
@@ -27,8 +53,8 @@ mutation CreateLesson(
     data: {
       date: $date
       endDate: $endDate
-      status: $status
-      paymentStatus: $paymentStatus
+      status: "scheduled"
+      paymentStatus: "unpaid"
       cost: $cost
       notes: $notes
       pupilId: $pupilId

@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:rijschool_app/screens/main_navigation_screen.dart';
 import 'package:rijschool_app/dataconnect_generated/generated.dart';

@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:rijschool_app/widgets/logout_button.dart';
 
 class SettingsScreen extends StatefulWidget {

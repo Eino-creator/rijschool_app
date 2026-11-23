@@ -3,9 +3,11 @@ import 'package:firebase_data_connect/firebase_data_connect.dart';
 import 'package:flutter/foundation.dart';
 import 'dart:convert';
 
-part 'get_lessons.dart';
+part 'get_lesson.dart';
 
-part 'create_lesson.dart';
+part 'get_lessons_by_day.dart';
+
+part 'create_new_lesson.dart';
 
 part 'get_pupils.dart';
 
@@ -26,13 +28,18 @@ part 'get_my_role.dart';
 class ConnectorConnector {
   
   
-  GetLessonsVariablesBuilder getLessons () {
-    return GetLessonsVariablesBuilder(dataConnect, );
+  GetLessonVariablesBuilder getLesson ({required String id, }) {
+    return GetLessonVariablesBuilder(dataConnect, id: id,);
   }
   
   
-  CreateLessonVariablesBuilder createLesson ({required Timestamp date, required Timestamp endDate, required String status, required String paymentStatus, required double cost, required String pupilId, }) {
-    return CreateLessonVariablesBuilder(dataConnect, date: date,endDate: endDate,status: status,paymentStatus: paymentStatus,cost: cost,pupilId: pupilId,);
+  GetLessonsByDayVariablesBuilder getLessonsByDay ({required Timestamp startDate, required Timestamp endDate, }) {
+    return GetLessonsByDayVariablesBuilder(dataConnect, startDate: startDate,endDate: endDate,);
+  }
+  
+  
+  CreateNewLessonVariablesBuilder createNewLesson ({required Timestamp date, required Timestamp endDate, required double cost, required String pupilId, }) {
+    return CreateNewLessonVariablesBuilder(dataConnect, date: date,endDate: endDate,cost: cost,pupilId: pupilId,);
   }
   
   
