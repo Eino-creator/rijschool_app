@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:rijschool_app/widgets/Lesson_card.dart';
+import 'package:rijschool_app/widgets/lesson_card.dart';
 import 'package:rijschool_app/widgets/empty_lesson_slot.dart';
 import 'package:rijschool_app/widgets/create_lesson_widget.dart';
 

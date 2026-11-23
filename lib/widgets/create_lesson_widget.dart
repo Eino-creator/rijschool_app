@@ -26,8 +26,6 @@ class _CreateLessonWidgetState extends State<CreateLessonWidget> {
   late final TextEditingController _notesController;
 
   String? _pupilId;
-  String _status = 'scheduled';
-  String _paymentStatus = 'unpaid';
   DateTime? _date;
   TimeOfDay? _startTime;
   TimeOfDay? _endTime;
@@ -136,8 +134,6 @@ class _CreateLessonWidgetState extends State<CreateLessonWidget> {
       final mutation = ConnectorConnector.instance.createNewLesson(
         date: _toTimestamp(start),
         endDate: _toTimestamp(end),
-        status: _status,
-        paymentStatus: _paymentStatus,
         cost: double.parse(_costController.text.trim()),
         pupilId: _pupilId!,
       ).notes(

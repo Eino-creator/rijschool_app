@@ -3,8 +3,6 @@ part of 'generated.dart';
 class CreateNewLessonVariablesBuilder {
   Timestamp date;
   Timestamp endDate;
-  String status;
-  String paymentStatus;
   double cost;
   Optional<String> _notes = Optional.optional(nativeFromJson, nativeToJson);
   String pupilId;
@@ -14,7 +12,7 @@ class CreateNewLessonVariablesBuilder {
    return this;
   }
 
-  CreateNewLessonVariablesBuilder(this._dataConnect, {required  this.date,required  this.endDate,required  this.status,required  this.paymentStatus,required  this.cost,required  this.pupilId,});
+  CreateNewLessonVariablesBuilder(this._dataConnect, {required  this.date,required  this.endDate,required  this.cost,required  this.pupilId,});
   Deserializer<CreateNewLessonData> dataDeserializer = (dynamic json)  => CreateNewLessonData.fromJson(jsonDecode(json));
   Serializer<CreateNewLessonVariables> varsSerializer = (CreateNewLessonVariables vars) => jsonEncode(vars.toJson());
   Future<OperationResult<CreateNewLessonData, CreateNewLessonVariables>> execute() {
@@ -22,7 +20,7 @@ class CreateNewLessonVariablesBuilder {
   }
 
   MutationRef<CreateNewLessonData, CreateNewLessonVariables> ref() {
-    CreateNewLessonVariables vars= CreateNewLessonVariables(date: date,endDate: endDate,status: status,paymentStatus: paymentStatus,cost: cost,notes: _notes,pupilId: pupilId,);
+    CreateNewLessonVariables vars= CreateNewLessonVariables(date: date,endDate: endDate,cost: cost,notes: _notes,pupilId: pupilId,);
     return _dataConnect.mutation("CreateNewLesson", dataDeserializer, varsSerializer, vars);
   }
 }
@@ -99,8 +97,6 @@ class CreateNewLessonData {
 class CreateNewLessonVariables {
   final Timestamp date;
   final Timestamp endDate;
-  final String status;
-  final String paymentStatus;
   final double cost;
   late final Optional<String>notes;
   final String pupilId;
@@ -109,12 +105,8 @@ class CreateNewLessonVariables {
   
   date = Timestamp.fromJson(json['date']),
   endDate = Timestamp.fromJson(json['endDate']),
-  status = nativeFromJson<String>(json['status']),
-  paymentStatus = nativeFromJson<String>(json['paymentStatus']),
   cost = nativeFromJson<double>(json['cost']),
   pupilId = nativeFromJson<String>(json['pupilId']) {
-  
-  
   
   
   
@@ -137,23 +129,19 @@ class CreateNewLessonVariables {
     final CreateNewLessonVariables otherTyped = other as CreateNewLessonVariables;
     return date == otherTyped.date && 
     endDate == otherTyped.endDate && 
-    status == otherTyped.status && 
-    paymentStatus == otherTyped.paymentStatus && 
     cost == otherTyped.cost && 
     notes == otherTyped.notes && 
     pupilId == otherTyped.pupilId;
     
   }
   @override
-  int get hashCode => Object.hashAll([date.hashCode, endDate.hashCode, status.hashCode, paymentStatus.hashCode, cost.hashCode, notes.hashCode, pupilId.hashCode]);
+  int get hashCode => Object.hashAll([date.hashCode, endDate.hashCode, cost.hashCode, notes.hashCode, pupilId.hashCode]);
   
 
   Map<String, dynamic> toJson() {
     Map<String, dynamic> json = {};
     json['date'] = date.toJson();
     json['endDate'] = endDate.toJson();
-    json['status'] = nativeToJson<String>(status);
-    json['paymentStatus'] = nativeToJson<String>(paymentStatus);
     json['cost'] = nativeToJson<double>(cost);
     if(notes.state == OptionalState.set) {
       json['notes'] = notes.toJson();
@@ -165,8 +153,6 @@ class CreateNewLessonVariables {
   CreateNewLessonVariables({
     required this.date,
     required this.endDate,
-    required this.status,
-    required this.paymentStatus,
     required this.cost,
     required this.notes,
     required this.pupilId,

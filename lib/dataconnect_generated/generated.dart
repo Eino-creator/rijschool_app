@@ -38,8 +38,8 @@ class ConnectorConnector {
   }
   
   
-  CreateNewLessonVariablesBuilder createNewLesson ({required Timestamp date, required Timestamp endDate, required String status, required String paymentStatus, required double cost, required String pupilId, }) {
-    return CreateNewLessonVariablesBuilder(dataConnect, date: date,endDate: endDate,status: status,paymentStatus: paymentStatus,cost: cost,pupilId: pupilId,);
+  CreateNewLessonVariablesBuilder createNewLesson ({required Timestamp date, required Timestamp endDate, required double cost, required String pupilId, }) {
+    return CreateNewLessonVariablesBuilder(dataConnect, date: date,endDate: endDate,cost: cost,pupilId: pupilId,);
   }
   
   

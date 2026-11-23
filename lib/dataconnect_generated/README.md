@@ -269,15 +269,11 @@ ref.subscribe(...);
 ```dart
 Timestamp date = ...;
 Timestamp endDate = ...;
-String status = ...;
-String paymentStatus = ...;
 double cost = ...;
 String pupilId = ...;
 ConnectorConnector.instance.createNewLesson(
   date: date,
   endDate: endDate,
-  status: status,
-  paymentStatus: paymentStatus,
   cost: cost,
   pupilId: pupilId,
 ).execute();
@@ -299,8 +295,6 @@ class CreateNewLessonVariablesBuilder {
 ConnectorConnector.instance.createNewLesson(
   date: date,
   endDate: endDate,
-  status: status,
-  paymentStatus: paymentStatus,
   cost: cost,
   pupilId: pupilId,
 )
@@ -322,8 +316,6 @@ class OperationResult<Data, Variables> {
 final result = await ConnectorConnector.instance.createNewLesson(
   date: date,
   endDate: endDate,
-  status: status,
-  paymentStatus: paymentStatus,
   cost: cost,
   pupilId: pupilId,
 );
@@ -337,16 +329,12 @@ An example of how to use the `Ref` object is shown below:
 ```dart
 Timestamp date = ...;
 Timestamp endDate = ...;
-String status = ...;
-String paymentStatus = ...;
 double cost = ...;
 String pupilId = ...;
 
 final ref = ConnectorConnector.instance.createNewLesson(
   date: date,
   endDate: endDate,
-  status: status,
-  paymentStatus: paymentStatus,
   cost: cost,
   pupilId: pupilId,
 ).ref();

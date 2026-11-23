@@ -45,8 +45,6 @@ query GetLessonsByDay(
 mutation CreateNewLesson(
   $date: Timestamp!
   $endDate: Timestamp!
-  $status: String!
-  $paymentStatus: String!
   $cost: Float!
   $notes: String
   $pupilId: UUID!
