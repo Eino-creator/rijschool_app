@@ -1,5 +1,5 @@
 query GetPupils @auth(level: USER) {
-    users(where:  {role: { eq: "pupil" } }) {
+    users(where:  {role: { eq: "PUPIL" } }) {
         id
         name
         email

@@ -7,20 +7,19 @@ mutation CreateUserProfile(
             firebaseUid_expr: "auth.uid"
             name: $name
             email: $email
-            role: "pupil"
+            role: "PUPIL"
         }
-    )
-}
-
-mutation MakeMyProfileAdmin @auth(level: USER) {
-    user_updateMany(
-        where: { email: { eq: "admin@gmail.com" } }
-        data: { role: "admin" }
     )
 }
 
 query GetMyRole($firebaseUid: String!) @auth(level: USER) {
     users(where: { firebaseUid: { eq: $firebaseUid } }) {
         role
+    }
+}
+
+query GetMyUserId($firebaseUid: String!) @auth(level: USER) {
+    users(where: { firebaseUid: { eq: $firebaseUid } }) {
+        id
     }
 }

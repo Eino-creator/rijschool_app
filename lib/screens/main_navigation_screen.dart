@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:rijschool_app/dataconnect_generated/generated.dart';
 import 'package:rijschool_app/screens/dashboard_screen.dart';
 import 'package:rijschool_app/screens/lessons_screen.dart';
+import 'package:rijschool_app/screens/pupil_lessons_screen.dart';
 import 'package:rijschool_app/screens/pupils_screen.dart';
 import 'package:rijschool_app/screens/settings_screen.dart';
 
@@ -58,11 +59,13 @@ class _MainNavigationScreenState
 
         final isAdmin = snapshot.data == 'ADMIN';
         final isInstructor = snapshot.data == 'INSTRUCTOR';
+        final isPupil = snapshot.data == 'PUPIL';
 
         final pages = <Widget>[
           const DashboardScreen(),
-          const LessonsScreen(),
+          if (isInstructor || isAdmin) const LessonsScreen(),
           if (isInstructor || isAdmin) const PupilsScreen(),
+          if (isPupil || isAdmin) const PupilLessonsScreen(),
           const SettingsScreen(),
         ];
 
@@ -83,7 +86,8 @@ class _MainNavigationScreenState
                 selectedIcon: Icon(Icons.home),
                 label: 'Dashboard',
               ),
-              const NavigationDestination(
+              if (isInstructor || isAdmin)
+                const NavigationDestination(
                 icon: Icon(Icons.pending_actions_outlined),
                 selectedIcon: Icon(Icons.pending_actions),
                 label: 'Lessons',
@@ -93,6 +97,12 @@ class _MainNavigationScreenState
                 icon: Icon(Icons.person_outlined),
                 selectedIcon: Icon(Icons.person),
                 label: 'Pupils',
+              ),
+              if (isPupil || isAdmin)
+              const NavigationDestination(
+                  icon: Icon(Icons.school_outlined),
+                  selectedIcon: Icon(Icons.school),
+                  label: 'Pupil lessons'
               ),
               const NavigationDestination(
                   icon: Icon(Icons.settings_outlined),

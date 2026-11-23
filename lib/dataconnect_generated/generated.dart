@@ -7,6 +7,8 @@ part 'get_lesson.dart';
 
 part 'get_lessons_by_day.dart';
 
+part 'get_lessons_by_pupil.dart';
+
 part 'create_new_lesson.dart';
 
 part 'get_pupils.dart';
@@ -15,9 +17,9 @@ part 'get_pupil.dart';
 
 part 'create_user_profile.dart';
 
-part 'make_my_profile_admin.dart';
-
 part 'get_my_role.dart';
+
+part 'get_my_user_id.dart';
 
 
 
@@ -35,6 +37,11 @@ class ConnectorConnector {
   
   GetLessonsByDayVariablesBuilder getLessonsByDay ({required Timestamp startDate, required Timestamp endDate, }) {
     return GetLessonsByDayVariablesBuilder(dataConnect, startDate: startDate,endDate: endDate,);
+  }
+  
+  
+  GetLessonsByPupilVariablesBuilder getLessonsByPupil ({required String pupilID, }) {
+    return GetLessonsByPupilVariablesBuilder(dataConnect, pupilID: pupilID,);
   }
   
   
@@ -58,13 +65,13 @@ class ConnectorConnector {
   }
   
   
-  MakeMyProfileAdminVariablesBuilder makeMyProfileAdmin () {
-    return MakeMyProfileAdminVariablesBuilder(dataConnect, );
+  GetMyRoleVariablesBuilder getMyRole ({required String firebaseUid, }) {
+    return GetMyRoleVariablesBuilder(dataConnect, firebaseUid: firebaseUid,);
   }
   
   
-  GetMyRoleVariablesBuilder getMyRole ({required String firebaseUid, }) {
-    return GetMyRoleVariablesBuilder(dataConnect, firebaseUid: firebaseUid,);
+  GetMyUserIdVariablesBuilder getMyUserId ({required String firebaseUid, }) {
+    return GetMyUserIdVariablesBuilder(dataConnect, firebaseUid: firebaseUid,);
   }
   
 

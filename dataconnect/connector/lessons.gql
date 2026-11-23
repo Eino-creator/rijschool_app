@@ -42,6 +42,28 @@ query GetLessonsByDay(
   }
 }
 
+query GetLessonsByPupil(
+  $pupilID: UUID!
+) @auth(level: USER) {
+  lessons(
+    where: {
+      pupilId: { eq: $pupilID }
+    }
+  ) {
+    id
+    date
+    endDate
+    status
+    paymentStatus
+    cost
+    notes
+    pupil {
+      id
+      name
+    }
+  }
+}
+
 mutation CreateNewLesson(
   $date: Timestamp!
   $endDate: Timestamp!
