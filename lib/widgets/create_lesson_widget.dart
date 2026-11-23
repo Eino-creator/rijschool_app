@@ -133,7 +133,7 @@ class _CreateLessonWidgetState extends State<CreateLessonWidget> {
     setState(() => _saving = true);
 
     try {
-      final mutation = ConnectorConnector.instance.createLesson(
+      final mutation = ConnectorConnector.instance.createNewLesson(
         date: _toTimestamp(start),
         endDate: _toTimestamp(end),
         status: _status,
@@ -262,54 +262,6 @@ class _CreateLessonWidgetState extends State<CreateLessonWidget> {
                     ),
                   ),
                 ],
-              ),
-              const SizedBox(height: 16),
-              DropdownButtonFormField<String>(
-                initialValue: _status,
-                decoration: const InputDecoration(
-                  labelText: 'Lesson status',
-                  border: OutlineInputBorder(),
-                ),
-                items: const [
-                  DropdownMenuItem(
-                    value: 'scheduled',
-                    child: Text('Scheduled'),
-                  ),
-                  DropdownMenuItem(
-                    value: 'completed',
-                    child: Text('Completed'),
-                  ),
-                  DropdownMenuItem(
-                    value: 'cancelled',
-                    child: Text('Cancelled'),
-                  ),
-                ],
-                onChanged: (value) {
-                  if (value != null) setState(() => _status = value);
-                },
-              ),
-              const SizedBox(height: 16),
-              DropdownButtonFormField<String>(
-                initialValue: _paymentStatus,
-                decoration: const InputDecoration(
-                  labelText: 'Payment status',
-                  border: OutlineInputBorder(),
-                ),
-                items: const [
-                  DropdownMenuItem(
-                    value: 'unpaid',
-                    child: Text('Unpaid'),
-                  ),
-                  DropdownMenuItem(
-                    value: 'paid',
-                    child: Text('Paid'),
-                  ),
-                ],
-                onChanged: (value) {
-                  if (value != null) {
-                    setState(() => _paymentStatus = value);
-                  }
-                },
               ),
               const SizedBox(height: 16),
               TextFormField(

@@ -264,7 +264,7 @@ ref.subscribe(...);
 
 ## Mutations
 
-### CreateLesson
+### CreateNewLesson
 #### Required Arguments
 ```dart
 Timestamp date = ...;
@@ -273,7 +273,7 @@ String status = ...;
 String paymentStatus = ...;
 double cost = ...;
 String pupilId = ...;
-ConnectorConnector.instance.createLesson(
+ConnectorConnector.instance.createNewLesson(
   date: date,
   endDate: endDate,
   status: status,
@@ -284,19 +284,19 @@ ConnectorConnector.instance.createLesson(
 ```
 
 #### Optional Arguments
-We return a builder for each query. For CreateLesson, we created `CreateLessonBuilder`. For queries and mutations with optional parameters, we return a builder class.
+We return a builder for each query. For CreateNewLesson, we created `CreateNewLessonBuilder`. For queries and mutations with optional parameters, we return a builder class.
 The builder pattern allows Data Connect to distinguish between fields that haven't been set and fields that have been set to null. A field can be set by calling its respective setter method like below:
 ```dart
-class CreateLessonVariablesBuilder {
+class CreateNewLessonVariablesBuilder {
   ...
-   CreateLessonVariablesBuilder notes(String? t) {
+   CreateNewLessonVariablesBuilder notes(String? t) {
    _notes.value = t;
    return this;
   }
 
   ...
 }
-ConnectorConnector.instance.createLesson(
+ConnectorConnector.instance.createNewLesson(
   date: date,
   endDate: endDate,
   status: status,
@@ -309,7 +309,7 @@ ConnectorConnector.instance.createLesson(
 ```
 
 #### Return Type
-`execute()` returns a `OperationResult<CreateLessonData, CreateLessonVariables>`
+`execute()` returns a `OperationResult<CreateNewLessonData, CreateNewLessonVariables>`
 ```dart
 /// Result of an Operation Request (query/mutation).
 class OperationResult<Data, Variables> {
@@ -319,7 +319,7 @@ class OperationResult<Data, Variables> {
   FirebaseDataConnect dataConnect;
 }
 
-final result = await ConnectorConnector.instance.createLesson(
+final result = await ConnectorConnector.instance.createNewLesson(
   date: date,
   endDate: endDate,
   status: status,
@@ -327,7 +327,7 @@ final result = await ConnectorConnector.instance.createLesson(
   cost: cost,
   pupilId: pupilId,
 );
-CreateLessonData data = result.data;
+CreateNewLessonData data = result.data;
 final ref = result.ref;
 ```
 
@@ -342,7 +342,7 @@ String paymentStatus = ...;
 double cost = ...;
 String pupilId = ...;
 
-final ref = ConnectorConnector.instance.createLesson(
+final ref = ConnectorConnector.instance.createNewLesson(
   date: date,
   endDate: endDate,
   status: status,

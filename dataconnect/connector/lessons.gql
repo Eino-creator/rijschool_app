@@ -42,7 +42,7 @@ query GetLessonsByDay(
   }
 }
 
-mutation CreateLesson(
+mutation CreateNewLesson(
   $date: Timestamp!
   $endDate: Timestamp!
   $status: String!
@@ -55,8 +55,8 @@ mutation CreateLesson(
     data: {
       date: $date
       endDate: $endDate
-      status: $status
-      paymentStatus: $paymentStatus
+      status: "scheduled"
+      paymentStatus: "unpaid"
       cost: $cost
       notes: $notes
       pupilId: $pupilId
