@@ -23,6 +23,7 @@ class PupilLessonCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final startDate = lesson.date.toDateTime();
     final endDate = lesson.endDate.toDateTime();
+    final isPaid = lesson.paymentStatus.toLowerCase() == 'paid';
 
     return Card(
       elevation: 0,
@@ -83,9 +84,9 @@ class PupilLessonCard extends StatelessWidget {
                   const Spacer(),
                   Text(
                     '€${lesson.cost.toStringAsFixed(2)}',
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontWeight: FontWeight.bold,
-                      color: Colors.green,
+                      color: isPaid ? Colors.green : Colors.red,
                     ),
                   ),
                 ],
