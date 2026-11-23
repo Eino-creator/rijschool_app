@@ -5,11 +5,6 @@ type User @table {
   role: String!
 }
 
-type ServiceRate @table {
-  name: String!
-  price: Float!
-}
-
 type Lesson @table {
   date: Timestamp!
   endDate: Timestamp!
@@ -21,25 +16,13 @@ type Lesson @table {
   serviceRate: ServiceRate
 }
 
-type Invoice @table {
-  issueDate: Timestamp!
-  dueDate: Timestamp!
-  totalAmount: Float!
-  status: String!
-  paymentMethod: String
-  pupil: User!
-}
-
-type InvoiceItem @table {
-  invoice: Invoice!
-  lesson: Lesson!
-}
-
-type PaymentLog @table {
-  amount: Float!
-  date: Timestamp!
-  method: String!
-  transactionId: String
-  lesson: Lesson!
-  pupil: User!
+type CourseCost @table {
+  lesson_time: Int
+  lesson_price: Float
+  registrationFee: Float
+  selfDeclaration: Float
+  brokerageFees: Float
+  ExamCarUsage: Float
+  totalFirstExamQuestion: Float
+  totalPracticalCatB: Float
 }
