@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:rijschool_app/widgets/lesson_card.dart';
 import 'package:rijschool_app/widgets/empty_lesson_slot.dart';
 import 'package:rijschool_app/widgets/create_lesson_widget.dart';
