@@ -1,6 +1,8 @@
 # Basic Usage
 
 ```dart
+ConnectorConnector.instance.GetCourseCosts().execute();
+ConnectorConnector.instance.EditCourseCosts(editCourseCostsVariables).execute();
 ConnectorConnector.instance.GetLesson(getLessonVariables).execute();
 ConnectorConnector.instance.GetLessonsByDay(getLessonsByDayVariables).execute();
 ConnectorConnector.instance.GetLessonsByPupil(getLessonsByPupilVariables).execute();
@@ -9,7 +11,6 @@ ConnectorConnector.instance.GetPupils().execute();
 ConnectorConnector.instance.GetPupil(getPupilVariables).execute();
 ConnectorConnector.instance.CreateUserProfile(createUserProfileVariables).execute();
 ConnectorConnector.instance.GetMyRole(getMyRoleVariables).execute();
-ConnectorConnector.instance.GetMyUserId(getMyUserIdVariables).execute();
 
 ```
 

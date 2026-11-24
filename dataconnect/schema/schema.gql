@@ -13,16 +13,14 @@ type Lesson @table {
   cost: Float!
   notes: String
   pupil: User!
-  serviceRate: ServiceRate
 }
 
 type CourseCost @table {
-  lesson_time: Int
-  lesson_price: Float
+  instructor: User!
+  lessonTime: Int
+  lessonPrice: Float
   registrationFee: Float
   selfDeclaration: Float
   brokerageFees: Float
-  ExamCarUsage: Float
-  totalFirstExamQuestion: Float
-  totalPracticalCatB: Float
+  examCarUsage: Float
 }

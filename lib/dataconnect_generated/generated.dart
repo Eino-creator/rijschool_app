@@ -3,6 +3,10 @@ import 'package:firebase_data_connect/firebase_data_connect.dart';
 import 'package:flutter/foundation.dart';
 import 'dart:convert';
 
+part 'get_course_costs.dart';
+
+part 'edit_course_costs.dart';
+
 part 'get_lesson.dart';
 
 part 'get_lessons_by_day.dart';
@@ -28,6 +32,16 @@ part 'get_my_user_id.dart';
 
 
 class ConnectorConnector {
+  
+  
+  GetCourseCostsVariablesBuilder getCourseCosts () {
+    return GetCourseCostsVariablesBuilder(dataConnect, );
+  }
+  
+  
+  EditCourseCostsVariablesBuilder editCourseCosts ({required String id, required int lessonTime, required double lessonPrice, required double registrationFee, required double selfDeclaration, required double brokerageFees, required double examCarUsage, }) {
+    return EditCourseCostsVariablesBuilder(dataConnect, id: id,lessonTime: lessonTime,lessonPrice: lessonPrice,registrationFee: registrationFee,selfDeclaration: selfDeclaration,brokerageFees: brokerageFees,examCarUsage: examCarUsage,);
+  }
   
   
   GetLessonVariablesBuilder getLesson ({required String id, }) {
