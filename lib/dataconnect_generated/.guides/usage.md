@@ -7,10 +7,10 @@ ConnectorConnector.instance.GetLesson(getLessonVariables).execute();
 ConnectorConnector.instance.GetLessonsByDay(getLessonsByDayVariables).execute();
 ConnectorConnector.instance.GetLessonsByPupil(getLessonsByPupilVariables).execute();
 ConnectorConnector.instance.CreateNewLesson(createNewLessonVariables).execute();
+ConnectorConnector.instance.EditLesson(editLessonVariables).execute();
 ConnectorConnector.instance.GetPupils().execute();
 ConnectorConnector.instance.GetPupil(getPupilVariables).execute();
 ConnectorConnector.instance.CreateUserProfile(createUserProfileVariables).execute();
-ConnectorConnector.instance.GetMyRole(getMyRoleVariables).execute();
 
 ```
 
@@ -23,8 +23,8 @@ Optional fields can be discovered based on classes that have `Optional` object t
 This is an example of a mutation with an optional field:
 
 ```dart
-await ConnectorConnector.instance.CreateNewLesson({ ... })
-.notes(...)
+await ConnectorConnector.instance.EditLesson({ ... })
+.status(...)
 .execute();
 ```
 

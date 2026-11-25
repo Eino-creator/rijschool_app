@@ -1,15 +1,16 @@
 import 'package:material_ui/material_ui.dart';
 import 'package:rijschool_app/screens/lesson_screen.dart';
+import 'package:rijschool_app/dataconnect_generated/generated.dart';
 
 class LessonCard extends StatelessWidget {
-  final dynamic lessons;
-  final VoidCallback? onTap;
+  final GetLessonsByDayLessons lessons;
+  final ValueChanged<GetLessonsByDayLessons>? onLongPress;
   final double top;
 
   const LessonCard({
     super.key,
     required this.lessons,
-    this.onTap,
+    this.onLongPress,
     this.top = 0,
   });
 
@@ -39,6 +40,7 @@ class LessonCard extends StatelessWidget {
                   ),
             );
           },
+          onLongPress: () => onLongPress?.call(lessons),
           borderRadius: BorderRadius.circular(12),
           child: Container(
             padding: const EdgeInsets.symmetric(

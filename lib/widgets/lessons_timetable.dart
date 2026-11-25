@@ -2,15 +2,20 @@ import 'package:material_ui/material_ui.dart';
 import 'package:rijschool_app/widgets/lesson_card.dart';
 import 'package:rijschool_app/widgets/empty_lesson_slot.dart';
 import 'package:rijschool_app/widgets/create_lesson_widget.dart';
+import 'package:rijschool_app/dataconnect_generated/generated.dart';
 
 class LessonsTimetable extends StatelessWidget {
-  final List lessons;
+  final List<GetLessonsByDayLessons> lessons;
+  final ValueChanged<GetLessonsByDayLessons>? onLongPress;
   final VoidCallback? onLessonCreated;
+  final DateTime selectedDay;
 
   const LessonsTimetable({
     super.key,
     required this.lessons,
     this.onLessonCreated,
+    this.onLongPress,
+    required this.selectedDay,
   });
 
   @override
@@ -25,7 +30,7 @@ class LessonsTimetable extends StatelessWidget {
       itemBuilder: (context, index) {
         final hour = hours[index];
 
-        final firstDate = lessons.first.date.toDateTime();
+        final firstDate = selectedDay;
 
         final hourStart = DateTime(
           firstDate.year,
@@ -91,6 +96,9 @@ class LessonsTimetable extends StatelessWidget {
 
                     return LessonCard(
                       lessons: lesson,
+                      onLongPress: (selectedLesson) {
+                        onLongPress?.call(selectedLesson);
+                      },
                       top: top,
                     );
                   }).toList()

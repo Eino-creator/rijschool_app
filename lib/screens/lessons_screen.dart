@@ -6,6 +6,8 @@ import 'package:rijschool_app/widgets/day_selector.dart';
 import 'package:rijschool_app/widgets/lessons_timetable.dart';
 import 'package:rijschool_app/extentions/date_time_extention.dart';
 
+import '../widgets/edit_lesson_widget.dart';
+
 class LessonsScreen extends StatefulWidget {
   const LessonsScreen({super.key});
 
@@ -90,6 +92,44 @@ class _LessonsScreenState extends State<LessonsScreen> {
     });
   }
 
+  void _openEditLessonModal(GetLessonsByDayLessons lesson) {
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      builder: (context) => Padding(
+        padding: EdgeInsets.only(
+          bottom: MediaQuery.of(context).viewInsets.bottom,
+        ),
+        child: ConstrainedBox(
+          constraints: BoxConstraints(
+            maxHeight: MediaQuery.of(context).size.height * 0.85,
+          ),
+          child: Scaffold(
+            backgroundColor: Colors.transparent,
+            appBar: AppBar(
+              title: const Text('Edit lesson'),
+              leading: CloseButton(
+                onPressed: () => Navigator.pop(context),
+              ),
+            ),
+            body: EditLessonWidget(
+              lesson: lesson,
+              onLessonEdited: () {
+                Navigator.pop(context, true);
+              },
+            ),
+          ),
+        ),
+      ),
+    ).then((edited) {
+      if (edited == true) {
+        _reloadLessons();
+      }
+    });
+  }
+
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -150,11 +190,11 @@ class _LessonsScreenState extends State<LessonsScreen> {
                   );
                 }
 
-                return Expanded(
-                  child: LessonsTimetable(
-                    lessons: lessons,
-                    onLessonCreated: _reloadLessons,
-                  ),
+                return LessonsTimetable(
+                  lessons: lessons,
+                  selectedDay: selectedDay!,
+                  onLessonCreated: _reloadLessons,
+                  onLongPress: _openEditLessonModal,
                 );
               },
             ),
