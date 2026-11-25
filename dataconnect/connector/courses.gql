@@ -1,0 +1,37 @@
+query GetCourseCosts @auth(level: USER) {
+    courseCosts {
+        id
+        instructor {
+            id
+            name
+        }
+        lessonTime
+        lessonPrice
+        registrationFee
+        selfDeclaration
+        brokerageFees
+        examCarUsage
+    }
+}
+
+mutation EditCourseCosts(
+    $id: UUID!
+    $lessonTime: Int!
+    $lessonPrice: Float!
+    $registrationFee: Float!
+    $selfDeclaration: Float!
+    $brokerageFees: Float!
+    $examCarUsage: Float!
+) @auth(level: USER) {
+    courseCost_update(
+        id: $id
+        data: {
+            lessonTime: $lessonTime
+            lessonPrice: $lessonPrice
+            registrationFee: $registrationFee
+            selfDeclaration: $selfDeclaration
+            brokerageFees: $brokerageFees
+            examCarUsage: $examCarUsage
+        }
+    )
+}
