@@ -75,7 +75,6 @@ class _CourseCostEditFormState extends State<CourseCostEditForm> {
     super.dispose();
   }
 
-  // Accept both 55.50 and 55,50 as decimal input.
   String _normaliseNumber(String value) {
     return value.trim().replaceAll(',', '.');
   }

@@ -172,8 +172,6 @@ class _CourseCostsScreenState extends State<CourseCostsScreen> {
             );
           }
 
-          // For now, use the first available CourseCost.
-          // Later we can add selection of multiple records.
           final costItem = courseCosts.first;
 
           final totalExamCost =
