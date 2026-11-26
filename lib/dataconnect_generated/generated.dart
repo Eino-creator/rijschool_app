@@ -15,6 +15,8 @@ part 'get_lessons_by_pupil.dart';
 
 part 'create_new_lesson.dart';
 
+part 'edit_lesson.dart';
+
 part 'get_pupils.dart';
 
 part 'get_pupil.dart';
@@ -61,6 +63,11 @@ class ConnectorConnector {
   
   CreateNewLessonVariablesBuilder createNewLesson ({required Timestamp date, required Timestamp endDate, required double cost, required String pupilId, }) {
     return CreateNewLessonVariablesBuilder(dataConnect, date: date,endDate: endDate,cost: cost,pupilId: pupilId,);
+  }
+  
+  
+  EditLessonVariablesBuilder editLesson ({required String id, required Timestamp date, required Timestamp endDate, required String status, required String paymentStatus, required double cost, required String pupilId, }) {
+    return EditLessonVariablesBuilder(dataConnect, id: id,date: date,endDate: endDate,status: status,paymentStatus: paymentStatus,cost: cost,pupilId: pupilId,);
   }
   
   

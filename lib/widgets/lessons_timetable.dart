@@ -2,15 +2,20 @@ import 'package:material_ui/material_ui.dart';
 import 'package:rijschool_app/widgets/lesson_card.dart';
 import 'package:rijschool_app/widgets/empty_lesson_slot.dart';
 import 'package:rijschool_app/widgets/create_lesson_widget.dart';
+import 'package:rijschool_app/dataconnect_generated/generated.dart';
 
 class LessonsTimetable extends StatelessWidget {
-  final List lessons;
+  final List<GetLessonsByDayLessons> lessons;
+  final ValueChanged<GetLessonsByDayLessons>? onLongPress;
   final VoidCallback? onLessonCreated;
+  final DateTime selectedDay;
 
   const LessonsTimetable({
     super.key,
     required this.lessons,
     this.onLessonCreated,
+    this.onLongPress,
+    required this.selectedDay,
   });
 
   @override
@@ -25,7 +30,7 @@ class LessonsTimetable extends StatelessWidget {
       itemBuilder: (context, index) {
         final hour = hours[index];
 
-        final firstDate = lessons.first.date.toDateTime();
+        final firstDate = selectedDay;
 
         final hourStart = DateTime(
           firstDate.year,
@@ -37,8 +42,8 @@ class LessonsTimetable extends StatelessWidget {
         final hourEnd = hourStart.add(const Duration(hours: 1));
 
         final slotLessons = lessons.where((lesson) {
-          final lessonStart = lesson.date.toDateTime();
-          final lessonEnd = lesson.endDate.toDateTime();
+          final lessonStart = lesson.date.toDateTime().toLocal();
+          final lessonEnd = lesson.endDate.toDateTime().toLocal();
 
           return lessonStart.isBefore(hourEnd) &&
               lessonEnd.isAfter(hourStart);
@@ -83,14 +88,21 @@ class LessonsTimetable extends StatelessWidget {
                 child: Stack(
                   clipBehavior: Clip.none,
                   children: slotLessons.map((lesson) {
-                    final lessonStart = lesson.date.toDateTime();
+                    final lessonStart = lesson.date.toDateTime().toLocal();
 
                     final startOffset = lessonStart.difference(hourStart).inMinutes;
 
                     final top = startOffset * (90 / 60);
 
+                    debugPrint('Lesson UTC: ${lesson.date.toDateTime().toUtc()}');
+                    debugPrint('Lesson local: ${lesson.date.toDateTime().toLocal()}');
+                    debugPrint('Hour start: $hourStart');
+
                     return LessonCard(
                       lessons: lesson,
+                      onLongPress: (selectedLesson) {
+                        onLongPress?.call(selectedLesson);
+                      },
                       top: top,
                     );
                   }).toList()

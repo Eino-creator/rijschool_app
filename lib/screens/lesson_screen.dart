@@ -53,8 +53,8 @@ class LessonScreen extends StatelessWidget {
           }
 
           final lesson = snapshot.data!.data.lessons.first;
-          final startDate = lesson.date.toDateTime();
-          final endDate = lesson.endDate.toDateTime();
+          final startDate = lesson.date.toDateTime().toLocal();
+          final endDate = lesson.endDate.toDateTime().toLocal();
 
           return ListView(
             padding: const EdgeInsets.all(16),

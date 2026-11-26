@@ -553,6 +553,102 @@ ref.execute();
 ```
 
 
+### EditLesson
+#### Required Arguments
+```dart
+String id = ...;
+Timestamp date = ...;
+Timestamp endDate = ...;
+String status = ...;
+String paymentStatus = ...;
+double cost = ...;
+String pupilId = ...;
+ConnectorConnector.instance.editLesson(
+  id: id,
+  date: date,
+  endDate: endDate,
+  status: status,
+  paymentStatus: paymentStatus,
+  cost: cost,
+  pupilId: pupilId,
+).execute();
+```
+
+#### Optional Arguments
+We return a builder for each query. For EditLesson, we created `EditLessonBuilder`. For queries and mutations with optional parameters, we return a builder class.
+The builder pattern allows Data Connect to distinguish between fields that haven't been set and fields that have been set to null. A field can be set by calling its respective setter method like below:
+```dart
+class EditLessonVariablesBuilder {
+  ...
+   EditLessonVariablesBuilder notes(String? t) {
+   _notes.value = t;
+   return this;
+  }
+
+  ...
+}
+ConnectorConnector.instance.editLesson(
+  id: id,
+  date: date,
+  endDate: endDate,
+  status: status,
+  paymentStatus: paymentStatus,
+  cost: cost,
+  pupilId: pupilId,
+)
+.notes(notes)
+.execute();
+```
+
+#### Return Type
+`execute()` returns a `OperationResult<EditLessonData, EditLessonVariables>`
+```dart
+/// Result of an Operation Request (query/mutation).
+class OperationResult<Data, Variables> {
+  OperationResult(this.dataConnect, this.data, this.ref);
+  Data data;
+  OperationRef<Data, Variables> ref;
+  FirebaseDataConnect dataConnect;
+}
+
+final result = await ConnectorConnector.instance.editLesson(
+  id: id,
+  date: date,
+  endDate: endDate,
+  status: status,
+  paymentStatus: paymentStatus,
+  cost: cost,
+  pupilId: pupilId,
+);
+EditLessonData data = result.data;
+final ref = result.ref;
+```
+
+#### Getting the Ref
+Each builder returns an `execute` function, which is a helper function that creates a `Ref` object, and executes the underlying operation.
+An example of how to use the `Ref` object is shown below:
+```dart
+String id = ...;
+Timestamp date = ...;
+Timestamp endDate = ...;
+String status = ...;
+String paymentStatus = ...;
+double cost = ...;
+String pupilId = ...;
+
+final ref = ConnectorConnector.instance.editLesson(
+  id: id,
+  date: date,
+  endDate: endDate,
+  status: status,
+  paymentStatus: paymentStatus,
+  cost: cost,
+  pupilId: pupilId,
+).ref();
+ref.execute();
+```
+
+
 ### CreateUserProfile
 #### Required Arguments
 ```dart

@@ -1,22 +1,26 @@
 import 'package:material_ui/material_ui.dart';
 import 'package:rijschool_app/screens/lesson_screen.dart';
+import 'package:rijschool_app/dataconnect_generated/generated.dart';
 
 class LessonCard extends StatelessWidget {
-  final dynamic lessons;
-  final VoidCallback? onTap;
+  final GetLessonsByDayLessons lessons;
+  final ValueChanged<GetLessonsByDayLessons>? onLongPress;
   final double top;
 
   const LessonCard({
     super.key,
     required this.lessons,
-    this.onTap,
+    this.onLongPress,
     this.top = 0,
   });
 
   @override
   Widget build(BuildContext context) {
-    final lessonStart = lessons.date.toDateTime();
-    final lessonEnd = lessons.endDate.toDateTime();
+    final lessonStart = lessons.date.toDateTime().toLocal();
+    final lessonEnd = lessons.endDate.toDateTime().toLocal();
+
+    debugPrint('TIMETABLE UTC: ${lessons.date.toDateTime().toUtc()}');
+    debugPrint('TIMETABLE LOCAL: ${lessons.date.toDateTime()}');
 
     final durationMinutes =
         lessonEnd.difference(lessonStart).inMinutes;
@@ -39,6 +43,7 @@ class LessonCard extends StatelessWidget {
                   ),
             );
           },
+          onLongPress: () => onLongPress?.call(lessons),
           borderRadius: BorderRadius.circular(12),
           child: Container(
             padding: const EdgeInsets.symmetric(

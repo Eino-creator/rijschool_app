@@ -174,14 +174,13 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   );
                 }
 
-                final start = currentOrNext.date.toDateTime();
-                final end = currentOrNext.endDate.toDateTime();
+                final start = currentOrNext.date.toDateTime().toLocal();
+                final end = currentOrNext.endDate.toDateTime().toLocal();
                 final isHappeningNow = start.isBefore(now) && end.isAfter(now);
 
                 return Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    // Main current/next lesson card
                     Card(
                       elevation: 0,
                       shape: RoundedRectangleBorder(
@@ -276,7 +275,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
                       ),
                     ),
 
-                    // Small indicator underneath for the next lesson
                     if (subsequent != null) ...[
                       const SizedBox(height: 12),
                       Padding(
@@ -288,7 +286,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                             const SizedBox(width: 8),
                             Expanded(
                               child: Text(
-                                'Next lesson: ${subsequent.pupil.name} on ${_formatDate(subsequent.date.toDateTime())} at ${_formatTime(subsequent.date.toDateTime())}',
+                                'Next lesson: ${subsequent.pupil.name} on ${_formatDate(subsequent.date.toDateTime().toLocal())} at ${_formatTime(subsequent.date.toDateTime().toLocal())}',
                                 style: TextStyle(
                                   fontSize: 13,
                                   color: Colors.grey.shade700,
