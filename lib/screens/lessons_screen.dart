@@ -5,8 +5,7 @@ import 'package:rijschool_app/widgets/create_lesson_widget.dart';
 import 'package:rijschool_app/widgets/day_selector.dart';
 import 'package:rijschool_app/widgets/lessons_timetable.dart';
 import 'package:rijschool_app/extentions/date_time_extention.dart';
-
-import '../widgets/edit_lesson_widget.dart';
+import 'package:rijschool_app/widgets/edit_lesson_widget.dart';
 
 class LessonsScreen extends StatefulWidget {
   const LessonsScreen({super.key});

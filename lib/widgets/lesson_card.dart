@@ -16,8 +16,11 @@ class LessonCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final lessonStart = lessons.date.toDateTime();
-    final lessonEnd = lessons.endDate.toDateTime();
+    final lessonStart = lessons.date.toDateTime().toLocal();
+    final lessonEnd = lessons.endDate.toDateTime().toLocal();
+
+    debugPrint('TIMETABLE UTC: ${lessons.date.toDateTime().toUtc()}');
+    debugPrint('TIMETABLE LOCAL: ${lessons.date.toDateTime()}');
 
     final durationMinutes =
         lessonEnd.difference(lessonStart).inMinutes;

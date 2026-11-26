@@ -223,7 +223,18 @@ class _EditLessonWidgetState extends State<EditLessonWidget> {
           );
         }
 
-        final pupils = snapshot.data!.data.users;
+        final List<dynamic> pupils = snapshot.data!.data.users;
+
+        final List<DropdownMenuItem<String>> pupilItems = [];
+
+        for (final pupil in pupils) {
+          pupilItems.add(
+            DropdownMenuItem<String>(
+              value: pupil.id.toString(),
+              child: Text(pupil.name.toString()),
+            ),
+          );
+        }
 
         return Form(
           key: _formKey,
@@ -233,20 +244,24 @@ class _EditLessonWidgetState extends State<EditLessonWidget> {
             padding: const EdgeInsets.all(16),
             children: [
               DropdownButtonFormField<String>(
-                initialValue: _pupilId,
+                initialValue: pupilItems.any(
+                      (item) => item.value == _pupilId,
+                )
+                    ? _pupilId
+                    : null,
                 decoration: const InputDecoration(
                   labelText: 'Pupil',
                   border: OutlineInputBorder(),
                 ),
-                items: pupils.map((pupil) {
-                  return DropdownMenuItem<String>(
-                    value: pupil.id.toString(),
-                    child: Text(pupil.name),
-                  );
-                }).toList(),
-                onChanged: (value) => setState(() => _pupilId = value),
-                validator: (value) =>
-                value == null ? 'Select a pupil' : null,
+                items: pupilItems,
+                onChanged: (String? value) {
+                  setState(() {
+                    _pupilId = value;
+                  });
+                },
+                validator: (String? value) {
+                  return value == null ? 'Select a pupil' : null;
+                },
               ),
               const SizedBox(height: 16),
               OutlinedButton.icon(

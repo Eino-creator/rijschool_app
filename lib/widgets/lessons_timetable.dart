@@ -42,8 +42,8 @@ class LessonsTimetable extends StatelessWidget {
         final hourEnd = hourStart.add(const Duration(hours: 1));
 
         final slotLessons = lessons.where((lesson) {
-          final lessonStart = lesson.date.toDateTime();
-          final lessonEnd = lesson.endDate.toDateTime();
+          final lessonStart = lesson.date.toDateTime().toLocal();
+          final lessonEnd = lesson.endDate.toDateTime().toLocal();
 
           return lessonStart.isBefore(hourEnd) &&
               lessonEnd.isAfter(hourStart);
@@ -88,11 +88,15 @@ class LessonsTimetable extends StatelessWidget {
                 child: Stack(
                   clipBehavior: Clip.none,
                   children: slotLessons.map((lesson) {
-                    final lessonStart = lesson.date.toDateTime();
+                    final lessonStart = lesson.date.toDateTime().toLocal();
 
                     final startOffset = lessonStart.difference(hourStart).inMinutes;
 
                     final top = startOffset * (90 / 60);
+
+                    debugPrint('Lesson UTC: ${lesson.date.toDateTime().toUtc()}');
+                    debugPrint('Lesson local: ${lesson.date.toDateTime().toLocal()}');
+                    debugPrint('Hour start: $hourStart');
 
                     return LessonCard(
                       lessons: lesson,
