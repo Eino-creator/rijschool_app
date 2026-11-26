@@ -559,12 +559,16 @@ ref.execute();
 String id = ...;
 Timestamp date = ...;
 Timestamp endDate = ...;
+String status = ...;
+String paymentStatus = ...;
 double cost = ...;
 String pupilId = ...;
 ConnectorConnector.instance.editLesson(
   id: id,
   date: date,
   endDate: endDate,
+  status: status,
+  paymentStatus: paymentStatus,
   cost: cost,
   pupilId: pupilId,
 ).execute();
@@ -576,15 +580,7 @@ The builder pattern allows Data Connect to distinguish between fields that haven
 ```dart
 class EditLessonVariablesBuilder {
   ...
-   EditLessonVariablesBuilder status(String? t) {
-   _status.value = t;
-   return this;
-  }
-  EditLessonVariablesBuilder paymentStatus(String? t) {
-   _paymentStatus.value = t;
-   return this;
-  }
-  EditLessonVariablesBuilder notes(String? t) {
+   EditLessonVariablesBuilder notes(String? t) {
    _notes.value = t;
    return this;
   }
@@ -595,11 +591,11 @@ ConnectorConnector.instance.editLesson(
   id: id,
   date: date,
   endDate: endDate,
+  status: status,
+  paymentStatus: paymentStatus,
   cost: cost,
   pupilId: pupilId,
 )
-.status(status)
-.paymentStatus(paymentStatus)
 .notes(notes)
 .execute();
 ```
@@ -619,6 +615,8 @@ final result = await ConnectorConnector.instance.editLesson(
   id: id,
   date: date,
   endDate: endDate,
+  status: status,
+  paymentStatus: paymentStatus,
   cost: cost,
   pupilId: pupilId,
 );
@@ -633,6 +631,8 @@ An example of how to use the `Ref` object is shown below:
 String id = ...;
 Timestamp date = ...;
 Timestamp endDate = ...;
+String status = ...;
+String paymentStatus = ...;
 double cost = ...;
 String pupilId = ...;
 
@@ -640,6 +640,8 @@ final ref = ConnectorConnector.instance.editLesson(
   id: id,
   date: date,
   endDate: endDate,
+  status: status,
+  paymentStatus: paymentStatus,
   cost: cost,
   pupilId: pupilId,
 ).ref();

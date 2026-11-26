@@ -4,26 +4,18 @@ class EditLessonVariablesBuilder {
   String id;
   Timestamp date;
   Timestamp endDate;
-  Optional<String> _status = Optional.optional(nativeFromJson, nativeToJson);
-  Optional<String> _paymentStatus = Optional.optional(nativeFromJson, nativeToJson);
+  String status;
+  String paymentStatus;
   double cost;
   Optional<String> _notes = Optional.optional(nativeFromJson, nativeToJson);
   String pupilId;
 
-  final FirebaseDataConnect _dataConnect;  EditLessonVariablesBuilder status(String? t) {
-   _status.value = t;
-   return this;
-  }
-  EditLessonVariablesBuilder paymentStatus(String? t) {
-   _paymentStatus.value = t;
-   return this;
-  }
-  EditLessonVariablesBuilder notes(String? t) {
+  final FirebaseDataConnect _dataConnect;  EditLessonVariablesBuilder notes(String? t) {
    _notes.value = t;
    return this;
   }
 
-  EditLessonVariablesBuilder(this._dataConnect, {required  this.id,required  this.date,required  this.endDate,required  this.cost,required  this.pupilId,});
+  EditLessonVariablesBuilder(this._dataConnect, {required  this.id,required  this.date,required  this.endDate,required  this.status,required  this.paymentStatus,required  this.cost,required  this.pupilId,});
   Deserializer<EditLessonData> dataDeserializer = (dynamic json)  => EditLessonData.fromJson(jsonDecode(json));
   Serializer<EditLessonVariables> varsSerializer = (EditLessonVariables vars) => jsonEncode(vars.toJson());
   Future<OperationResult<EditLessonData, EditLessonVariables>> execute() {
@@ -31,7 +23,7 @@ class EditLessonVariablesBuilder {
   }
 
   MutationRef<EditLessonData, EditLessonVariables> ref() {
-    EditLessonVariables vars= EditLessonVariables(id: id,date: date,endDate: endDate,status: _status,paymentStatus: _paymentStatus,cost: cost,notes: _notes,pupilId: pupilId,);
+    EditLessonVariables vars= EditLessonVariables(id: id,date: date,endDate: endDate,status: status,paymentStatus: paymentStatus,cost: cost,notes: _notes,pupilId: pupilId,);
     return _dataConnect.mutation("EditLesson", dataDeserializer, varsSerializer, vars);
   }
 }
@@ -111,8 +103,8 @@ class EditLessonVariables {
   final String id;
   final Timestamp date;
   final Timestamp endDate;
-  late final Optional<String>status;
-  late final Optional<String>paymentStatus;
+  final String status;
+  final String paymentStatus;
   final double cost;
   late final Optional<String>notes;
   final String pupilId;
@@ -122,6 +114,8 @@ class EditLessonVariables {
   id = nativeFromJson<String>(json['id']),
   date = Timestamp.fromJson(json['date']),
   endDate = Timestamp.fromJson(json['endDate']),
+  status = nativeFromJson<String>(json['status']),
+  paymentStatus = nativeFromJson<String>(json['paymentStatus']),
   cost = nativeFromJson<double>(json['cost']),
   pupilId = nativeFromJson<String>(json['pupilId']) {
   
@@ -129,12 +123,6 @@ class EditLessonVariables {
   
   
   
-    status = Optional.optional(nativeFromJson, nativeToJson);
-    status.value = json['status'] == null ? null : nativeFromJson<String>(json['status']);
-  
-  
-    paymentStatus = Optional.optional(nativeFromJson, nativeToJson);
-    paymentStatus.value = json['paymentStatus'] == null ? null : nativeFromJson<String>(json['paymentStatus']);
   
   
   
@@ -172,12 +160,8 @@ class EditLessonVariables {
     json['id'] = nativeToJson<String>(id);
     json['date'] = date.toJson();
     json['endDate'] = endDate.toJson();
-    if(status.state == OptionalState.set) {
-      json['status'] = status.toJson();
-    }
-    if(paymentStatus.state == OptionalState.set) {
-      json['paymentStatus'] = paymentStatus.toJson();
-    }
+    json['status'] = nativeToJson<String>(status);
+    json['paymentStatus'] = nativeToJson<String>(paymentStatus);
     json['cost'] = nativeToJson<double>(cost);
     if(notes.state == OptionalState.set) {
       json['notes'] = notes.toJson();

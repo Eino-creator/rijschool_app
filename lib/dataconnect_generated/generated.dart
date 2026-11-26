@@ -66,8 +66,8 @@ class ConnectorConnector {
   }
   
   
-  EditLessonVariablesBuilder editLesson ({required String id, required Timestamp date, required Timestamp endDate, required double cost, required String pupilId, }) {
-    return EditLessonVariablesBuilder(dataConnect, id: id,date: date,endDate: endDate,cost: cost,pupilId: pupilId,);
+  EditLessonVariablesBuilder editLesson ({required String id, required Timestamp date, required Timestamp endDate, required String status, required String paymentStatus, required double cost, required String pupilId, }) {
+    return EditLessonVariablesBuilder(dataConnect, id: id,date: date,endDate: endDate,status: status,paymentStatus: paymentStatus,cost: cost,pupilId: pupilId,);
   }
   
   

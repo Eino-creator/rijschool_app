@@ -24,7 +24,7 @@ This is an example of a mutation with an optional field:
 
 ```dart
 await ConnectorConnector.instance.EditLesson({ ... })
-.status(...)
+.notes(...)
 .execute();
 ```
 

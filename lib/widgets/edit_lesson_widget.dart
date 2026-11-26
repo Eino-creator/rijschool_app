@@ -28,6 +28,8 @@ class _EditLessonWidgetState extends State<EditLessonWidget> {
   late final TextEditingController _notesController;
   late Future<dynamic> _pupilsFuture;
 
+  String? _status;
+  String? _paymentStatus;
   String? _pupilId;
   DateTime? _date;
   TimeOfDay? _startTime;
@@ -46,10 +48,12 @@ class _EditLessonWidgetState extends State<EditLessonWidget> {
       text: widget.lesson.notes ?? '',
     );
 
+    _status = widget.lesson.status;
+    _paymentStatus = widget.lesson.paymentStatus;
     _pupilId = widget.lesson.pupil.id;
 
-    final lessonDate = widget.lesson.date.toDateTime();
-    final lessonEnd = widget.lesson.endDate.toDateTime();
+    final lessonDate = widget.lesson.date.toDateTime().toLocal();
+    final lessonEnd = widget.lesson.endDate.toDateTime().toLocal();
 
     _date = widget.initialDate ?? lessonDate;
 
@@ -161,6 +165,8 @@ class _EditLessonWidgetState extends State<EditLessonWidget> {
           _costController.text.trim().replaceAll(',', '.'),
         ),
         pupilId: _pupilId!,
+        status: _status!,
+        paymentStatus: _paymentStatus!,
       ).notes(
         _notesController.text.trim().isEmpty
             ? null
@@ -295,6 +301,64 @@ class _EditLessonWidgetState extends State<EditLessonWidget> {
                             ? 'End time'
                             : 'End: ${_endTime!.format(context)}',
                       ),
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 16),
+              Row(
+                children: [
+                  Expanded(
+                    child: DropdownButtonFormField<String>(
+                      initialValue: _status,
+                      decoration: const InputDecoration(
+                        labelText: 'Lesson status',
+                        border: OutlineInputBorder(),
+                      ),
+                      items: const [
+                        DropdownMenuItem(
+                          value: 'scheduled',
+                          child: Text('Scheduled'),
+                        ),
+                        DropdownMenuItem(
+                          value: 'completed',
+                          child: Text('Completed'),
+                        ),
+                        DropdownMenuItem(
+                          value: 'cancelled',
+                          child: Text('Cancelled'),
+                        ),
+                      ],
+                      onChanged: (value) {
+                        setState(() {
+                          _status = value;
+                        });
+                      },
+                    ),
+                  ),
+                  const SizedBox(width: 12),
+                  Expanded(
+                    child: DropdownButtonFormField<String>(
+                      initialValue: _paymentStatus,
+                      decoration: const InputDecoration(
+                        labelText: 'Payment status',
+                        border: OutlineInputBorder(),
+                      ),
+                      items: const [
+                        DropdownMenuItem(
+                          value: 'unpaid',
+                          child: Text('Unpaid'),
+                        ),
+                        DropdownMenuItem(
+                          value: 'paid',
+                          child: Text('Paid'),
+                        ),
+                      ],
+                      onChanged: (value) {
+                        setState(() {
+                          _paymentStatus = value;
+                        });
+                      },
                     ),
                   ),
                 ],

@@ -88,8 +88,8 @@ mutation EditLesson(
   $id: UUID!
   $date: Timestamp!
   $endDate: Timestamp!
-  $status: String
-  $paymentStatus: String
+  $status: String!
+  $paymentStatus: String!
   $cost: Float!
   $notes: String
   $pupilId: UUID!
